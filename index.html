@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lina Turns 18</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Beau+Rivage&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --paper:#fdf1ee;
+    --paper-deep:#f6e0e5;
+    --panel:#fff8f4;
+    --rose:#cf7e93;
+    --rose-deep:#a34d68;
+    --rose-ink:#8a3f59;
+    --plum:#3c2532;
+    --plum-soft:#7a5866;
+    --gold:#c79a55;
+    --peach:#f6ddc9;
+    --line:rgba(60,37,50,.14);
+    --shadow:0 18px 40px -22px rgba(120,60,80,.35);
+    --page-gradient: linear-gradient(165deg, #fdf1ee 0%, #f9e3e9 24%, #f2d2dd 48%, #eec9d6 62%, #f2d6c8 82%, #f8e9d7 100%);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--plum);
+    font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Fraunces',ui-serif,Georgia,serif; margin:0; text-wrap:balance;}
+  p{margin:0;}
+  img{max-width:100%;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+
+  .backdrop{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(58vmax 58vmax at 6% 6%, rgba(207,126,147,.22), transparent 60%),
+      radial-gradient(64vmax 64vmax at 94% 18%, rgba(199,154,85,.18), transparent 55%),
+      radial-gradient(70vmax 70vmax at 88% 92%, rgba(238,201,214,.30), transparent 60%),
+      radial-gradient(70vmax 70vmax at 10% 96%, rgba(242,214,200,.28), transparent 58%),
+      var(--page-gradient);
+  }
+
+  .page{
+    position:relative; z-index:1;
+    max-width:560px; margin:0 auto;
+    min-height:100vh;
+    container-type:inline-size;
+    container-name:page;
+    background:var(--page-gradient);
+    box-shadow:0 0 90px rgba(120,60,80,.16);
+    isolation:isolate;
+  }
+  .page::before{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    opacity:.4; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  @media (min-width:640px){
+    .page{ margin:0 auto; border-left:1px solid var(--line); border-right:1px solid var(--line);}
+  }
+
+  section{ position:relative; z-index:1; padding: clamp(2.5rem,8cqw,4rem) clamp(1.25rem,6cqw,2.75rem); }
+
+  .eyebrow{
+    font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--rose-ink); font-weight:700;
+  }
+
+  /* ---------- decorative bits ---------- */
+  .petal{position:absolute; border-radius:50% 50% 50% 4%; background:var(--rose); opacity:.85;}
+  .flower{position:absolute; width:54px; height:54px;}
+  .flower .petal{width:22px; height:22px;}
+  .flower .petal:nth-child(1){top:2px; left:16px; transform:rotate(0deg);}
+  .flower .petal:nth-child(2){top:16px; left:30px; transform:rotate(72deg); background:var(--rose-deep);}
+  .flower .petal:nth-child(3){top:32px; left:22px; transform:rotate(144deg);}
+  .flower .petal:nth-child(4){top:32px; left:6px; transform:rotate(216deg); background:var(--rose-deep);}
+  .flower .petal:nth-child(5){top:16px; left:0px; transform:rotate(288deg);}
+  .flower .center{position:absolute; top:20px; left:16px; width:16px; height:16px; border-radius:50%; background:var(--gold);}
+
+  .sparkle{position:absolute; color:var(--gold); opacity:.8;}
+
+  @media (prefers-reduced-motion:no-preference){
+    .float{ animation:floaty 6s ease-in-out infinite; }
+    .float-slow{ animation:floaty 9s ease-in-out infinite; }
+    @keyframes floaty{ 0%,100%{transform:translateY(0) rotate(var(--r,0deg));} 50%{transform:translateY(-10px) rotate(var(--r,0deg));} }
+  }
+
+  /* ================= HERO / ENVELOPE ================= */
+  .hero{
+    min-height:100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; gap:clamp(1.4rem,5cqw,2.2rem);
+    padding-top:clamp(3rem,10cqw,4rem); padding-bottom:clamp(3rem,10cqw,4rem);
+    transition:opacity .6s ease, filter .6s ease;
+  }
+  .hero.is-opened{ opacity:0; filter:blur(6px); pointer-events:none; }
+
+  .bubble{
+    background:var(--panel); border:1px solid var(--line); border-radius:999px;
+    padding:.7rem 1.4rem; font-weight:700; font-size:clamp(1rem,3.6cqw,1.2rem);
+    box-shadow:var(--shadow); color:var(--rose-ink);
+  }
+
+  .envelope-wrap{ position:relative; width:min(78vw,320px); }
+
+  .envelope{
+    position:relative; width:100%; aspect-ratio:16/11; cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .envelope-inner{ position:relative; width:100%; height:100%; }
+  @media (prefers-reduced-motion:no-preference){
+    .envelope-inner{ animation:sway 4.5s ease-in-out infinite; transform-origin:50% 85%; }
+    @keyframes sway{ 0%,100%{transform:rotate(-2deg) translateY(0);} 50%{transform:rotate(2deg) translateY(-6px);} }
+  }
+  .envelope.is-open .envelope-inner{ animation:none; }
+
+  .env-body{
+    position:absolute; inset:0; border-radius:10px;
+    background:linear-gradient(155deg,#f4c9d3,#e9a7b8);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .env-body::before, .env-body::after{
+    content:""; position:absolute; top:0; width:52%; height:100%;
+    background:rgba(255,255,255,.18);
+    clip-path:polygon(0 0,100% 0,0 100%);
+  }
+  .env-body::after{ right:0; left:auto; transform:scaleX(-1); }
+
+  .env-flap{
+    position:absolute; left:0; top:0; width:100%; height:58%;
+    background:linear-gradient(160deg,#f6d6de,#eab3c2);
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    transform-origin:top center; transition:transform .7s cubic-bezier(.7,-.2,.3,1.3);
+    box-shadow:0 6px 14px rgba(120,60,80,.18);
+  }
+  .envelope.is-open .env-flap{ transform:rotateX(178deg); }
+
+  .env-seal{
+    position:absolute; left:50%; top:44%; width:19%; aspect-ratio:1;
+    transform:translate(-50%,-50%); border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #f2c4d1, #d98aa2 70%);
+    box-shadow:0 4px 10px rgba(120,60,80,.35), inset 0 -3px 5px rgba(120,50,70,.3);
+    display:flex; align-items:center; justify-content:center;
+    transition:opacity .35s ease, transform .35s ease; z-index:2;
+  }
+  .envelope.is-open .env-seal{ opacity:0; transform:translate(-50%,-50%) scale(.4); }
+  .env-seal svg{ width:62%; height:62%; }
+
+  .env-hint{ font-size:.78rem; color:var(--plum-soft); }
+  .arrow{ color:var(--rose-deep); }
+
+  /* ================= INVITE ================= */
+  .invite{ text-align:center; display:flex; flex-direction:column; align-items:center; gap:clamp(.5rem,3cqw,1rem); }
+  .invite .to{ font-size:clamp(1.1rem,4cqw,1.4rem); font-weight:500; color:var(--plum-soft); }
+  .invite .name{ font-family:'Beau Rivage',cursive; font-size:clamp(3.2rem,16cqw,5rem); color:var(--rose-deep); line-height:1; margin-top:.2rem;}
+  .invite .party{ font-size:clamp(1.6rem,7cqw,2.3rem); font-weight:600; }
+  .big-18{
+    font-size:clamp(6rem,30cqw,11rem); font-weight:700; line-height:.85;
+    color:transparent; -webkit-text-stroke:3px var(--rose-deep);
+    margin:.2em 0;
+  }
+  .datechip{
+    margin-top:.5rem; background:var(--panel); border:1px solid var(--line);
+    border-radius:16px; padding:.9rem 1.6rem; box-shadow:var(--shadow);
+    font-weight:700; font-size:clamp(1rem,4cqw,1.25rem); letter-spacing:.02em;
+  }
+  .scrolldown{ margin-top:1.5rem; font-size:1.4rem; color:var(--rose); }
+  @media (prefers-reduced-motion:no-preference){ .scrolldown{ animation:floaty 2.4s ease-in-out infinite; } }
+
+  /* ================= PANELS ================= */
+  .panel{ background:var(--panel); border-radius:22px; box-shadow:var(--shadow); border:1px solid var(--line); }
+  .section-title{ font-size:clamp(1.5rem,6cqw,1.9rem); margin-bottom:.3rem; }
+  .section-lede{ color:var(--plum-soft); margin-bottom:1.4rem; font-size:.95rem; }
+
+  .cottage{ width:100%; max-width:280px; margin:0 auto 1.4rem; display:block; }
+
+  .infolist{ display:flex; flex-direction:column; gap:.7rem; margin:1.2rem 0; }
+  .infochip{
+    display:flex; gap:.7rem; align-items:flex-start; background:var(--paper-deep);
+    border-radius:14px; padding:.8rem 1rem; font-size:.95rem; font-weight:600;
+  }
+  .infochip .ico{ flex:none; }
+  .infochip .muted{ font-weight:500; color:var(--plum-soft); font-style:italic; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+    padding:.85rem 1.5rem; border-radius:999px; font-weight:700; font-size:.95rem;
+    text-decoration:none; border:1px solid transparent; transition:transform .15s ease, box-shadow .15s ease;
+    cursor:pointer;
+  }
+  .btn:active{ transform:scale(.97); }
+  .btn-primary{ background:var(--rose-deep); color:var(--panel); box-shadow:0 10px 24px -10px rgba(163,77,104,.6); }
+  .btn-outline{ background:transparent; color:var(--rose-deep); border-color:var(--rose-deep); }
+  .btn-row{ display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.2rem; }
+
+  .rules{ margin-top:1.6rem; padding-top:1.4rem; border-top:1px dashed var(--line); }
+  .rules ul{ list-style:none; margin:.8rem 0 0; padding:0; display:flex; flex-direction:column; gap:.6rem; }
+  .rules li{ display:flex; gap:.6rem; font-size:.93rem; font-weight:600; }
+
+  /* ================= PROGRAM ================= */
+  .proggrid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(128px,1fr)); gap:.9rem; margin:1.4rem 0;
+  }
+  .progcard{
+    background:var(--paper-deep); border-radius:16px; padding:1.1rem .9rem; text-align:center;
+    display:flex; flex-direction:column; align-items:center; gap:.5rem;
+  }
+  .progcard svg{ width:30px; height:30px; color:var(--rose-deep); }
+  .progcard span{ font-size:.85rem; font-weight:700; }
+  .progcard.wide{ grid-column:1 / -1; background:transparent; border:1px dashed var(--line); color:var(--plum-soft); font-weight:600; font-size:.85rem;}
+
+  .banner{
+    margin-top:1.2rem; background:var(--rose-deep); color:var(--panel);
+    border-radius:16px; padding:1rem 1.2rem; text-align:center;
+    font-family:'Fraunces',serif; font-size:clamp(1.2rem,5cqw,1.5rem); font-weight:600;
+  }
+
+  /* ================= BIRTHDAY SPOTLIGHT ================= */
+  .spotlight{ background:linear-gradient(180deg,var(--paper-deep),var(--paper)); }
+  .garland{ display:flex; justify-content:space-between; margin-bottom:1.6rem; padding:0 .4rem; }
+  .bulb{ width:10px; height:10px; border-radius:50%; background:var(--gold); box-shadow:0 0 8px 2px rgba(199,154,85,.7);}
+  .bulb:nth-child(odd){ margin-top:10px; }
+
+  .spot-card{ position:relative; padding:clamp(2rem,8cqw,2.6rem) clamp(1.2rem,6cqw,1.8rem); text-align:center; overflow:hidden;}
+  .photo-slot{
+    width:min(58vw,220px); aspect-ratio:4/5; margin:0 auto 1.2rem; border-radius:6px 6px 60px 6px;
+    background:repeating-linear-gradient(135deg,var(--paper-deep),var(--paper-deep) 10px,#f0d3d9 10px,#f0d3d9 20px);
+    border:6px solid var(--panel); box-shadow:var(--shadow);
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:.4rem;
+    color:var(--rose-ink); font-weight:700; font-size:.85rem; text-align:center; padding:1rem;
+  }
+  .photo-slot svg{ width:34%; opacity:.7; }
+  .spot-script{ font-family:'Beau Rivage',cursive; font-size:clamp(1.8rem,8cqw,2.4rem); color:var(--rose-deep); }
+  .spot-num{ font-family:'Fraunces',serif; font-weight:700; font-size:clamp(4rem,20cqw,6.5rem); color:var(--rose-deep); line-height:.85; margin:.1em 0;}
+  .spot-title{ font-size:clamp(1.5rem,6cqw,2rem); font-weight:600; }
+
+  /* ================= WISHLIST ================= */
+  .money{ width:min(52vw,190px); margin:0 auto 1.4rem; display:block; }
+  .wishtext{ font-size:1rem; line-height:1.55; max-width:46ch; margin:0 auto; }
+
+  /* ================= FOOTER ================= */
+  footer{ text-align:center; padding-bottom:clamp(3rem,10cqw,4rem); }
+  .foot-flower{ margin:0 auto 1rem; position:relative; width:54px; height:54px; }
+  .signoff{ margin-top:1.6rem; color:var(--plum-soft); font-size:.85rem; }
+
+  .visually-hidden-note{ font-size:.72rem; color:var(--plum-soft); margin-top:.5rem; font-style:italic; }
+
+  /* ================= REVEAL GATE ================= */
+  .reveal-content{ max-height:0; overflow:hidden; }
+  .reveal-content.is-visible{ max-height:none; }
+  .reveal-content > *{ opacity:0; transition:opacity .7s ease, transform .7s ease; }
+  @media (prefers-reduced-motion:no-preference){
+    .reveal-content > *{ transform:translateY(28px); }
+  }
+  .reveal-content.is-visible > *{ opacity:1; transform:translateY(0); }
+  .reveal-content.is-visible > *:nth-child(1){ transition-delay:.05s; }
+  .reveal-content.is-visible > *:nth-child(2){ transition-delay:.15s; }
+  .reveal-content.is-visible > *:nth-child(3){ transition-delay:.25s; }
+  .reveal-content.is-visible > *:nth-child(4){ transition-delay:.35s; }
+  .reveal-content.is-visible > *:nth-child(5){ transition-delay:.45s; }
+  .reveal-content.is-visible > *:nth-child(6){ transition-delay:.55s; }
+</style>
+</head>
+<body>
+
+<div class="backdrop"></div>
+<div class="page">
+
+  <!-- ============ HERO / ENVELOPE ============ -->
+  <section class="hero" id="hero">
+    <div class="flower float" style="top:8%; left:6%;" aria-hidden="true">
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      <div class="center"></div>
+    </div>
+    <span class="sparkle float-slow" style="top:16%; right:10%; font-size:1.4rem;" aria-hidden="true">✦</span>
+    <span class="sparkle float" style="bottom:22%; left:9%; font-size:1.1rem;" aria-hidden="true">✦</span>
+
+    <div class="bubble">You&rsquo;ve been invited!</div>
+
+    <div class="envelope-wrap">
+      <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Открыть приглашение">
+        <div class="envelope-inner">
+          <div class="env-body"></div>
+          <div class="env-flap"></div>
+          <div class="env-seal">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 12C12 12 9 8 6 9C3.5 9.8 4 13 7 12.6C9 12.3 12 12 12 12Z" fill="#fff" opacity=".85"/>
+              <path d="M12 12C12 12 15 8 18 9C20.5 9.8 20 13 17 12.6C15 12.3 12 12 12 12Z" fill="#fff" opacity=".85"/>
+              <circle cx="12" cy="12.5" r="2" fill="#fff" opacity=".9"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bubble" id="open-label">Open!!!</div>
+    <div class="env-hint">нажми на конверт ✨</div>
+  </section>
+
+  <div class="reveal-content" id="reveal-content">
+
+  <!-- ============ INVITE HEADLINE ============ -->
+  <section class="invite" id="invite">
+    <p class="eyebrow">You're invited to</p>
+    <p class="name">Lina&rsquo;s</p>
+    <h1 class="party">18th birthday party!</h1>
+    <div class="big-18">18</div>
+    <div class="datechip">Пятница · 18 сентября · 17:00</div>
+    <div class="scrolldown">⌄</div>
+  </section>
+
+  <!-- ============ LOCATION ============ -->
+  <section id="location">
+    <div class="panel" style="padding:clamp(1.6rem,6cqw,2.2rem);">
+      <p class="eyebrow">Где это будет</p>
+      <h2 class="section-title">Уютный коттедж</h2>
+      <p class="section-lede">Целый дом в нашем распоряжении — с бассейном и сауной.</p>
+
+      <svg class="cottage" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="20,80 110,20 200,80" fill="var(--rose-deep)"/>
+        <rect x="35" y="80" width="150" height="70" fill="var(--panel)" stroke="var(--line)" stroke-width="2"/>
+        <rect x="95" y="105" width="30" height="45" fill="var(--paper-deep)"/>
+        <rect x="50" y="95" width="26" height="26" fill="var(--paper-deep)"/>
+        <rect x="144" y="95" width="26" height="26" fill="var(--paper-deep)"/>
+        <rect x="105" y="40" width="10" height="20" fill="var(--rose-deep)"/>
+      </svg>
+
+      <div class="infolist">
+        <div class="infochip"><span class="ico">📍</span><span class="muted">Адрес — пришлю отдельно</span></div>
+        <div class="infochip"><span class="ico">🗓️</span><span>Пятница, 18 сентября · 17:00</span></div>
+        <div class="infochip"><span class="ico">👗</span><span>Дресс-кода нет</span></div>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#" id="gis-link">Открыть в 2ГИС</a>
+      </div>
+
+      <div class="rules">
+        <p class="eyebrow">House rules</p>
+        <ul>
+          <li>🍾 Не напиваться в хлам, пожалуйста</li>
+          <li>💛 Прийти в хорошем настроении и кайфовать</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROGRAM ============ -->
+  <section id="program">
+    <p class="eyebrow">Что будет</p>
+    <h2 class="section-title">В программе</h2>
+    <p class="section-lede">Всё для того, чтобы провести вечер идеально.</p>
+
+    <div class="proggrid">
+      <div class="progcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 17c1.5 1.5 2.5 1.5 4 0s2.5-1.5 4 0 2.5 1.5 4 0 2.5-1.5 4 0 2.5 1.5 4 0"/><circle cx="17" cy="6" r="2.4"/><path d="M4 13l7-7 3 3-7 7H4v-3z"/></svg><span>Бассейн</span></div>
+      <div class="progcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3c1 2-1 3 0 5M11 3c1 2-1 3 0 5M16 3c1 2-1 3 0 5"/><path d="M4 12h16v3a5 5 0 01-5 5H9a5 5 0 01-5-5v-3z"/><path d="M18 13h1a2 2 0 010 4h-1"/></svg><span>Сауна</span></div>
+      <div class="progcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l3-9h10l3 9"/><path d="M9 11c0-3 1-4 0-7M13 11c1-3 2-4 1-7M17 11c1-2 2-3 1-5"/></svg><span>Мангал</span></div>
+      <div class="progcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h12l-2 6a4 4 0 01-8 0L6 3z"/><path d="M12 13v7M8 20h8"/></svg><span>Алко</span></div>
+      <div class="progcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12.5h3M9.5 11v3"/><circle cx="16" cy="11.5" r="1"/><circle cx="18" cy="13.5" r="1"/></svg><span>Приставка</span></div>
+      <div class="progcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0M12 17v4M9 21h6"/></svg><span>Караоке</span></div>
+      <div class="progcard wide">✨ и другое — узнаете уже на месте</div>
+    </div>
+
+    <div class="banner">Берите купальники!!! 🩱</div>
+  </section>
+
+  <!-- ============ BIRTHDAY SPOTLIGHT ============ -->
+  <section class="spotlight" id="birthday">
+    <div class="garland" aria-hidden="true">
+      <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+      <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+    </div>
+    <div class="panel spot-card">
+      <div class="flower float-slow" style="top:6%; left:4%; --r:-8deg;" aria-hidden="true">
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="center"></div>
+      </div>
+      <div class="flower float" style="bottom:8%; right:4%; --r:10deg;" aria-hidden="true">
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="center"></div>
+      </div>
+
+      <div class="photo-slot">
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+        Фото Лины<br>(добавим сюда)
+      </div>
+
+      <p class="spot-script">Flowers &amp; party</p>
+      <div class="spot-num">18</div>
+      <h2 class="spot-title">It&rsquo;s my birthday!</h2>
+    </div>
+  </section>
+
+  <!-- ============ WISHLIST ============ -->
+  <section id="wishlist" style="text-align:center;">
+    <p class="eyebrow">Про подарки</p>
+    <h2 class="section-title">Вишлист</h2>
+
+    <svg class="money" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="30" y="70" width="140" height="46" rx="6" fill="#e7dcae" stroke="var(--gold)" stroke-width="2"/>
+      <rect x="22" y="58" width="140" height="46" rx="6" fill="#f1e8bf" stroke="var(--gold)" stroke-width="2"/>
+      <rect x="16" y="46" width="140" height="46" rx="6" fill="#faf3d2" stroke="var(--gold)" stroke-width="2"/>
+      <circle cx="86" cy="69" r="14" fill="none" stroke="var(--gold)" stroke-width="2"/>
+      <path d="M60 30 L86 55 L112 30" fill="none" stroke="var(--rose-deep)" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="86" cy="52" r="9" fill="var(--rose)"/>
+      <path d="M86 52 C70 40 55 46 60 58 C64 66 78 60 86 52Z" fill="var(--rose)"/>
+      <path d="M86 52 C102 40 117 46 112 58 C108 66 94 60 86 52Z" fill="var(--rose-deep)"/>
+    </svg>
+
+    <p class="wishtext">У меня, конечно, есть вишлист — но там в основном дорогие подарки, рассчитанные на родственников 😅<br><br>Так что если думаете, что подарить — просто дарите деньги, буду только рада ;)</p>
+
+    <div class="btn-row" style="justify-content:center;">
+      <a class="btn btn-outline" href="https://ohmywishes.com/users/kigfrgbxz36gcx" target="_blank" rel="noopener" id="wishlist-link">Смотреть вишлист</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER / CONTACT ============ -->
+  <footer id="contact">
+    <div class="foot-flower" aria-hidden="true">
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      <div class="center"></div>
+    </div>
+    <p class="eyebrow">Остались вопросы?</p>
+    <h2 class="section-title">Пишите!</h2>
+    <p class="section-lede">По всем вопросам — в общий чат или мне лично.</p>
+    <div class="btn-row" style="justify-content:center;">
+      <a class="btn btn-primary" href="#" id="tg-group-link">Telegram-группа</a>
+      <a class="btn btn-outline" href="https://t.me/lililililinkaa" target="_blank" rel="noopener" id="tg-dm-link">Написать Лине</a>
+    </div>
+    <p class="signoff">До встречи 18 сентября 🥂</p>
+  </footer>
+
+  </div>
+
+</div>
+
+<script>
+  const envelope = document.getElementById('envelope');
+  const hero = document.getElementById('hero');
+  const openLabel = document.getElementById('open-label');
+  const reveal = document.getElementById('reveal-content');
+
+  function openEnvelope(){
+    if (envelope.classList.contains('is-open')) return;
+    envelope.classList.add('is-open');
+    openLabel.style.opacity = '0';
+    setTimeout(() => {
+      hero.classList.add('is-opened');
+      reveal.classList.add('is-visible');
+      requestAnimationFrame(() => {
+        document.getElementById('invite').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }, 600);
+  }
+
+  envelope.addEventListener('click', openEnvelope);
+  envelope.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnvelope(); }
+  });
+</script>
+</body>
+</html>
