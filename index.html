@@ -28,8 +28,8 @@
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:var(--ink);
-    color:var(--text-light);
+    background:var(--cream);
+    color:var(--text-dark);
     font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;
     overflow-x:hidden;
   }
@@ -41,10 +41,7 @@
 
   .backdrop{
     position:fixed; inset:0; z-index:0; pointer-events:none;
-    background:
-      radial-gradient(55vmax 65vmax at 50% 15%, rgba(194,51,73,.20), transparent 70%),
-      radial-gradient(70vmax 60vmax at 50% 100%, rgba(201,164,104,.08), transparent 65%),
-      #1d120e;
+    background:var(--cream);
   }
 
   .page{
@@ -53,26 +50,30 @@
     min-height:100vh;
     container-type:inline-size;
     container-name:page;
-    background:var(--page-gradient);
-    box-shadow:0 0 90px rgba(0,0,0,.45);
+    background:var(--cream);
+    box-shadow:0 0 60px rgba(87,20,30,.12);
     isolation:isolate;
   }
   .page::before{
     content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
-    opacity:.3; mix-blend-mode:overlay;
+    opacity:.08; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
   @media (min-width:640px){
-    .page{ margin:0 auto; border-left:1px solid var(--line-on-dark); border-right:1px solid var(--line-on-dark);}
+    .page{ margin:0 auto; border-left:1px solid var(--line); border-right:1px solid var(--line);}
   }
 
   section{ position:relative; z-index:1; padding: clamp(2.5rem,8cqw,4rem) clamp(1.25rem,6cqw,2.75rem); }
 
   .eyebrow{
     font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
-    color:var(--accent); font-weight:700;
+    color:var(--accent-deep); font-weight:700;
   }
-  .panel .eyebrow{ color:var(--accent-deep); }
+  .on-burgundy .eyebrow{ color:var(--accent); }
+
+  /* ---------- alternating section blocks ---------- */
+  .on-burgundy{ background:var(--ink); color:var(--text-light); }
+  .on-burgundy .rules{ border-top-color:var(--line-on-dark); }
 
   /* ---------- decorative bits ---------- */
   .petal{position:absolute; border-radius:50% 50% 50% 4%; background:var(--accent); opacity:.85;}
@@ -161,11 +162,11 @@
   /* ================= INVITE ================= */
   .invite{ text-align:center; display:flex; flex-direction:column; align-items:center; gap:clamp(.5rem,3cqw,1rem); }
   .invite .to{ font-size:clamp(1.1rem,4cqw,1.4rem); font-weight:500; opacity:.7; }
-  .invite .name{ font-family:'Beau Rivage',cursive; font-size:clamp(3.2rem,16cqw,5rem); color:var(--accent); line-height:1; margin-top:.2rem;}
+  .invite .name{ font-family:'Beau Rivage',cursive; font-size:clamp(3.2rem,16cqw,5rem); color:var(--accent-deep); line-height:1; margin-top:.2rem;}
   .invite .party{ font-size:clamp(1.6rem,7cqw,2.3rem); font-weight:600; }
   .big-18{
     font-size:clamp(6rem,30cqw,11rem); font-weight:700; line-height:.85;
-    color:transparent; -webkit-text-stroke:3px var(--accent);
+    color:transparent; -webkit-text-stroke:3px var(--accent-deep);
     margin:.2em 0;
   }
   .datechip{
@@ -173,7 +174,7 @@
     border-radius:16px; padding:.9rem 1.6rem; box-shadow:var(--shadow); color:var(--text-dark);
     font-weight:700; font-size:clamp(1rem,4cqw,1.25rem); letter-spacing:.02em;
   }
-  .scrolldown{ margin-top:1.5rem; font-size:1.4rem; color:var(--accent); }
+  .scrolldown{ margin-top:1.5rem; font-size:1.4rem; color:var(--accent-deep); }
   @media (prefers-reduced-motion:no-preference){ .scrolldown{ animation:floaty 2.4s ease-in-out infinite; } }
 
   /* ================= PANELS ================= */
@@ -186,7 +187,7 @@
   .infolist{ display:flex; flex-direction:column; gap:.7rem; margin:1.2rem 0; }
   .infochip{
     display:flex; gap:.7rem; align-items:flex-start; background:var(--cream-deep);
-    border-radius:14px; padding:.8rem 1rem; font-size:.95rem; font-weight:600;
+    border-radius:14px; padding:.8rem 1rem; font-size:.95rem; font-weight:600; color:var(--text-dark);
   }
   .infochip .ico{ flex:none; }
   .infochip .muted{ font-weight:500; opacity:.7; font-style:italic; }
@@ -199,8 +200,8 @@
   }
   .btn:active{ transform:scale(.97); }
   .btn-primary{ background:var(--accent); color:var(--cream); box-shadow:0 10px 24px -10px rgba(194,51,73,.55); }
-  .btn-outline{ background:transparent; color:var(--text-light); border-color:var(--line-on-dark); }
-  .panel .btn-outline{ color:var(--accent-deep); border-color:var(--accent-deep); }
+  .btn-outline{ background:transparent; color:var(--accent-deep); border-color:var(--accent-deep); }
+  .on-burgundy .btn-outline{ color:var(--text-light); border-color:var(--line-on-dark); }
   .btn-row{ display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.2rem; }
 
   .rules{ margin-top:1.6rem; padding-top:1.4rem; border-top:1px dashed var(--line); }
@@ -212,12 +213,12 @@
     display:grid; grid-template-columns:repeat(auto-fit,minmax(128px,1fr)); gap:.9rem; margin:1.4rem 0;
   }
   .progcard{
-    background:var(--cream); border-radius:16px; padding:1.1rem .9rem; text-align:center;
+    background:var(--cream-deep); border-radius:16px; padding:1.1rem .9rem; text-align:center;
     display:flex; flex-direction:column; align-items:center; gap:.5rem; color:var(--text-dark);
   }
   .progcard svg{ width:30px; height:30px; color:var(--accent-deep); }
   .progcard span{ font-size:.85rem; font-weight:700; }
-  .progcard.wide{ grid-column:1 / -1; background:transparent; border:1px dashed var(--line-on-dark); color:var(--text-light); opacity:.65; font-weight:600; font-size:.85rem;}
+  .progcard.wide{ grid-column:1 / -1; background:transparent; border:1px dashed var(--line); color:var(--text-dark); opacity:.65; font-weight:600; font-size:.85rem;}
 
   .banner{
     margin-top:1.2rem; background:var(--accent); color:var(--cream);
@@ -316,38 +317,36 @@
   </section>
 
   <!-- ============ LOCATION ============ -->
-  <section id="location">
-    <div class="panel" style="padding:clamp(1.6rem,6cqw,2.2rem);">
-      <p class="eyebrow">Где это будет</p>
-      <h2 class="section-title">Уютный коттедж</h2>
-      <p class="section-lede">Целый дом в нашем распоряжении — с бассейном и сауной.</p>
+  <section id="location" class="on-burgundy">
+    <p class="eyebrow">Где это будет</p>
+    <h2 class="section-title">Уютный коттедж</h2>
+    <p class="section-lede">Целый дом в нашем распоряжении — с бассейном и сауной.</p>
 
-      <svg class="cottage" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <polygon points="20,80 110,20 200,80" fill="var(--accent-deep)"/>
-        <rect x="35" y="80" width="150" height="70" fill="var(--cream)" stroke="var(--line)" stroke-width="2"/>
-        <rect x="95" y="105" width="30" height="45" fill="var(--cream-deep)"/>
-        <rect x="50" y="95" width="26" height="26" fill="var(--cream-deep)"/>
-        <rect x="144" y="95" width="26" height="26" fill="var(--cream-deep)"/>
-        <rect x="105" y="40" width="10" height="20" fill="var(--accent-deep)"/>
-      </svg>
+    <svg class="cottage" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polygon points="20,80 110,20 200,80" fill="var(--gold)"/>
+      <rect x="35" y="80" width="150" height="70" fill="var(--cream)" stroke="var(--line)" stroke-width="2"/>
+      <rect x="95" y="105" width="30" height="45" fill="var(--cream-deep)"/>
+      <rect x="50" y="95" width="26" height="26" fill="var(--cream-deep)"/>
+      <rect x="144" y="95" width="26" height="26" fill="var(--cream-deep)"/>
+      <rect x="105" y="40" width="10" height="20" fill="var(--gold)"/>
+    </svg>
 
-      <div class="infolist">
-        <div class="infochip"><span class="ico">📍</span><span class="muted">Адрес — пришлю отдельно</span></div>
-        <div class="infochip"><span class="ico">🗓️</span><span>Пятница, 18 сентября · 17:00</span></div>
-        <div class="infochip"><span class="ico">👗</span><span>Дресс-кода нет</span></div>
-      </div>
+    <div class="infolist">
+      <div class="infochip"><span class="ico">📍</span><span class="muted">Адрес — пришлю отдельно</span></div>
+      <div class="infochip"><span class="ico">🗓️</span><span>Пятница, 18 сентября · 17:00</span></div>
+      <div class="infochip"><span class="ico">👗</span><span>Дресс-кода нет</span></div>
+    </div>
 
-      <div class="btn-row">
-        <a class="btn btn-primary" href="#" id="gis-link">Открыть в 2ГИС</a>
-      </div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#" id="gis-link">Открыть в 2ГИС</a>
+    </div>
 
-      <div class="rules">
-        <p class="eyebrow">House rules</p>
-        <ul>
-          <li>🍾 Не напиваться в хлам, пожалуйста</li>
-          <li>💛 Прийти в хорошем настроении и кайфовать</li>
-        </ul>
-      </div>
+    <div class="rules">
+      <p class="eyebrow">House rules</p>
+      <ul>
+        <li>🍾 Не напиваться в хлам, пожалуйста</li>
+        <li>💛 Прийти в хорошем настроении и кайфовать</li>
+      </ul>
     </div>
   </section>
 
@@ -371,7 +370,7 @@
   </section>
 
   <!-- ============ BIRTHDAY SPOTLIGHT ============ -->
-  <section class="spotlight" id="birthday">
+  <section class="on-burgundy spotlight" id="birthday">
     <div class="garland" aria-hidden="true">
       <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
       <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
@@ -408,9 +407,9 @@
       <rect x="16" y="46" width="140" height="46" rx="6" fill="#faf3d2" stroke="var(--gold)" stroke-width="2"/>
       <circle cx="86" cy="69" r="14" fill="none" stroke="var(--gold)" stroke-width="2"/>
       <path d="M60 30 L86 55 L112 30" fill="none" stroke="var(--accent-deep)" stroke-width="10" stroke-linecap="round"/>
-      <circle cx="86" cy="52" r="9" fill="var(--accent)"/>
-      <path d="M86 52 C70 40 55 46 60 58 C64 66 78 60 86 52Z" fill="var(--accent)"/>
-      <path d="M86 52 C102 40 117 46 112 58 C108 66 94 60 86 52Z" fill="var(--accent-deep)"/>
+      <circle cx="86" cy="52" r="9" fill="var(--accent-deep)"/>
+      <path d="M86 52 C70 40 55 46 60 58 C64 66 78 60 86 52Z" fill="var(--accent-deep)"/>
+      <path d="M86 52 C102 40 117 46 112 58 C108 66 94 60 86 52Z" fill="var(--accent)"/>
     </svg>
 
     <p class="wishtext">У меня, конечно, есть вишлист — но там в основном дорогие подарки, рассчитанные на родственников 😅<br><br>Так что если думаете, что подарить — просто дарите деньги, буду только рада ;)</p>
@@ -421,7 +420,7 @@
   </section>
 
   <!-- ============ FOOTER / CONTACT ============ -->
-  <footer id="contact">
+  <footer id="contact" class="on-burgundy">
     <div class="foot-flower" aria-hidden="true">
       <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
       <div class="center"></div>
