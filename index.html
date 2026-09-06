@@ -93,6 +93,16 @@
 
   .sparkle{position:absolute; color:var(--gold); opacity:.8;}
 
+  /* ---------- photo cutout stickers (white-bg jpgs on cream) ---------- */
+  .sticker{ position:absolute; mix-blend-mode:multiply; pointer-events:none; }
+  .lace-strip{ display:block; width:100%; height:auto; mix-blend-mode:multiply; opacity:.9; }
+  .lace-strip.flip{ transform:scaleY(-1); }
+
+  @media (prefers-reduced-motion:no-preference){
+    .spin-slow{ animation:spin 9s linear infinite; }
+    @keyframes spin{ to{ transform:rotate(360deg); } }
+  }
+
   @media (prefers-reduced-motion:no-preference){
     .float{ animation:floaty 6s ease-in-out infinite; }
     .float-slow{ animation:floaty 9s ease-in-out infinite; }
@@ -237,15 +247,15 @@
   .bulb{ width:10px; height:10px; border-radius:50%; background:var(--gold); box-shadow:0 0 8px 2px rgba(199,154,85,.7);}
   .bulb:nth-child(odd){ margin-top:10px; }
 
-  .spot-card{ position:relative; padding:clamp(2rem,8cqw,2.6rem) clamp(1.2rem,6cqw,1.8rem); text-align:center; overflow:hidden;}
-  .photo-slot{
-    width:min(58vw,220px); aspect-ratio:4/5; margin:0 auto 1.2rem; border-radius:6px 6px 60px 6px;
-    background:repeating-linear-gradient(135deg,var(--cream-deep),var(--cream-deep) 10px,#ddc6ac 10px,#ddc6ac 20px);
-    border:6px solid var(--cream); box-shadow:var(--shadow);
-    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:.4rem;
-    color:var(--accent-deep); font-weight:700; font-size:.85rem; text-align:center; padding:1rem;
+  .spot-card{ position:relative; padding:clamp(2rem,8cqw,2.6rem) clamp(1.2rem,6cqw,1.8rem); text-align:center; overflow:visible;}
+  .photo-stack{ position:relative; width:min(56vw,210px); aspect-ratio:4/5; margin:0 auto 1.6rem; }
+  .party-photo{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    border:6px solid var(--cream); box-shadow:var(--shadow); border-radius:4px;
   }
-  .photo-slot svg{ width:34%; opacity:.7; }
+  .party-photo-1{ z-index:2; transform:rotate(-4deg); }
+  .party-photo-2{ z-index:1; width:88%; height:88%; inset:auto; top:8%; left:16%; transform:rotate(7deg); }
+  .sash-sticker{ position:absolute; z-index:3; width:78%; top:36%; left:-14%; transform:rotate(-20deg); mix-blend-mode:multiply; }
   .spot-script{ font-family:'Beau Rivage',cursive; font-size:clamp(1.8rem,8cqw,2.4rem); color:var(--accent-deep); }
   .spot-num{ font-family:'Fraunces',serif; font-weight:700; font-size:clamp(4rem,20cqw,6.5rem); color:var(--accent-deep); line-height:.85; margin:.1em 0;}
   .spot-title{ font-size:clamp(1.5rem,6cqw,2rem); font-weight:600; }
@@ -280,11 +290,11 @@
 
   <!-- ============ HERO / ENVELOPE ============ -->
   <section class="hero" id="hero">
-    <div class="flower float" style="top:8%; left:6%;" aria-hidden="true">
-      <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
-      <div class="center"></div>
-    </div>
-    <span class="sparkle float-slow" style="top:16%; right:10%; font-size:1.4rem;" aria-hidden="true">✦</span>
+    <img class="lace-strip" style="position:absolute; top:0; left:0;" src="assets/lace.jpg" alt="" aria-hidden="true">
+    <img class="lace-strip flip" style="position:absolute; bottom:0; left:0;" src="assets/lace.jpg" alt="" aria-hidden="true">
+
+    <img class="sticker float" style="top:9%; left:4%; width:80px;" src="assets/flowers.jpg" alt="" aria-hidden="true">
+    <img class="sticker float-slow" style="top:14%; right:6%; width:56px;" src="assets/disco-ball.jpg" alt="" aria-hidden="true">
     <span class="sparkle float" style="bottom:22%; left:9%; font-size:1.1rem;" aria-hidden="true">✦</span>
 
     <div class="bubble">You&rsquo;ve been invited!</div>
@@ -317,7 +327,7 @@
     <p class="name">Lina&rsquo;s</p>
     <h1 class="party">18th birthday party!</h1>
     <div class="big-18">18</div>
-    <div class="datechip">Пятница · 18 сентября · 17:00</div>
+    <div class="datechip">Суббота · 19 сентября · 17:00</div>
     <div class="scrolldown">⌄</div>
   </section>
 
@@ -337,13 +347,13 @@
     </svg>
 
     <div class="infolist">
-      <div class="infochip"><span class="ico">📍</span><span class="muted">Адрес — пришлю отдельно</span></div>
-      <div class="infochip"><span class="ico">🗓️</span><span>Пятница, 18 сентября · 17:00</span></div>
+      <div class="infochip"><span class="ico">📍</span><span>Kuliga House</span></div>
+      <div class="infochip"><span class="ico">🗓️</span><span>Суббота, 19 сентября · 17:00</span></div>
       <div class="infochip"><span class="ico">👗</span><span>Дресс-кода нет</span></div>
     </div>
 
     <div class="btn-row">
-      <a class="btn btn-primary" href="#" id="gis-link">Открыть в 2ГИС</a>
+      <a class="btn btn-primary" href="https://2gis.ru/tyumen/geo/70000001112413353/65.096915,57.252303" target="_blank" rel="noopener" id="gis-link">Открыть в 2ГИС</a>
     </div>
 
     <div class="rules">
@@ -357,6 +367,8 @@
 
   <!-- ============ PROGRAM ============ -->
   <section id="program">
+    <img class="sticker float-slow" style="top:6%; right:4%; width:64px;" src="assets/wine-glasses.jpg" alt="" aria-hidden="true">
+    <img class="sticker float" style="bottom:8%; left:3%; width:52px;" src="assets/cocktail.jpg" alt="" aria-hidden="true">
     <p class="eyebrow">Что будет</p>
     <h2 class="section-title">В программе</h2>
     <p class="section-lede">Всё для того, чтобы провести вечер идеально.</p>
@@ -381,18 +393,17 @@
       <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
     </div>
     <div class="panel spot-card">
-      <div class="flower float-slow" style="top:6%; left:4%; --r:-8deg;" aria-hidden="true">
-        <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
-        <div class="center"></div>
-      </div>
       <div class="flower float" style="bottom:8%; right:4%; --r:10deg;" aria-hidden="true">
         <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
         <div class="center"></div>
       </div>
+      <img class="sticker spin-slow" style="top:2%; right:6%; width:58px;" src="assets/vinyl-red.jpg" alt="" aria-hidden="true">
 
-      <div class="photo-slot">
-        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
-        Фото Лины<br>(добавим сюда)
+      <div class="photo-stack float-slow">
+        <img class="party-photo party-photo-2" src="assets/party-photo-3.jpg" alt="">
+        <img class="party-photo party-photo-1" src="assets/party-photo-1.jpg" alt="Лина на прошлом дне рождения">
+        <img class="sash-sticker" src="assets/sash.jpg" alt="" aria-hidden="true">
+        <img class="sticker" style="bottom:-12px; left:-16px; width:60px;" src="assets/cake.jpg" alt="" aria-hidden="true">
       </div>
 
       <p class="spot-script">Flowers &amp; party</p>
@@ -403,6 +414,8 @@
 
   <!-- ============ WISHLIST ============ -->
   <section id="wishlist" style="text-align:center;">
+    <img class="sticker float" style="top:8%; left:6%; width:48px;" src="assets/bow.jpg" alt="" aria-hidden="true">
+    <img class="sticker float-slow" style="bottom:10%; right:5%; width:52px;" src="assets/lips.jpg" alt="" aria-hidden="true">
     <p class="eyebrow">Про подарки</p>
     <h2 class="section-title">Вишлист</h2>
 
@@ -434,10 +447,10 @@
     <h2 class="section-title">Пишите!</h2>
     <p class="section-lede">По всем вопросам — в общий чат или мне лично.</p>
     <div class="btn-row" style="justify-content:center;">
-      <a class="btn btn-primary" href="#" id="tg-group-link">Telegram-группа</a>
+      <a class="btn btn-primary" href="https://t.me/+7cBKtuxE6wA4NWJi" target="_blank" rel="noopener" id="tg-group-link">Telegram-группа</a>
       <a class="btn btn-outline" href="https://t.me/lililililinkaa" target="_blank" rel="noopener" id="tg-dm-link">Написать Лине</a>
     </div>
-    <p class="signoff">До встречи 18 сентября 🥂</p>
+    <p class="signoff">До встречи 19 сентября 🥂</p>
   </footer>
 
   </div>
