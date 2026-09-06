@@ -95,14 +95,12 @@
 
   /* ---------- photo cutout stickers (white-bg jpgs on cream) ---------- */
   .sticker{ position:absolute; mix-blend-mode:multiply; pointer-events:none; }
-  .lace-band{
-    position:absolute; left:0; right:0; height:clamp(48px,12cqw,72px); z-index:0;
-    background-image:url("assets/lace.jpg"); background-repeat:repeat-x; background-size:auto 100%;
-    mix-blend-mode:multiply; opacity:.85; pointer-events:none;
+  .lace-corner{
+    position:absolute; width:min(30vw,140px); height:auto; z-index:0;
+    mix-blend-mode:multiply; opacity:.8; pointer-events:none;
   }
-  .lace-band.top{ top:0; }
-  .lace-band.bottom{ bottom:0; transform:scaleY(-1); }
 
+  .disco-img{ clip-path:circle(46%); border-radius:50%; filter:drop-shadow(0 4px 8px rgba(20,4,8,.35)); }
   .disco-big{ position:absolute; top:5%; right:3%; width:min(22vw,110px); z-index:2; }
   .disco-cherries{ position:absolute; bottom:14%; left:4%; width:80px; height:56px; z-index:2; }
   .disco-cherries .cherry-stem{ position:absolute; inset:0; width:100%; height:100%; opacity:.6; }
@@ -313,14 +311,16 @@
 
   <!-- ============ HERO / ENVELOPE ============ -->
   <section class="hero" id="hero">
-    <div class="lace-band top" aria-hidden="true"></div>
-    <div class="lace-band bottom" aria-hidden="true"></div>
+    <img class="lace-corner" style="top:0; left:0;" src="assets/lace.jpg" alt="" aria-hidden="true">
+    <img class="lace-corner" style="top:0; right:0; transform:scaleX(-1);" src="assets/lace.jpg" alt="" aria-hidden="true">
+    <img class="lace-corner" style="bottom:0; left:0; transform:scaleY(-1);" src="assets/lace.jpg" alt="" aria-hidden="true">
+    <img class="lace-corner" style="bottom:0; right:0; transform:rotate(180deg);" src="assets/lace.jpg" alt="" aria-hidden="true">
 
-    <img class="sticker disco-big float-slow" src="assets/disco-ball.jpg" alt="" aria-hidden="true">
+    <img class="disco-img disco-big float-slow" src="assets/disco-ball.jpg" alt="" aria-hidden="true">
     <div class="disco-cherries float" aria-hidden="true">
       <svg class="cherry-stem" viewBox="0 0 60 40"><path d="M50 4 C40 4 34 16 30 22 M30 22 C26 16 20 6 10 6" stroke="var(--accent-deep)" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
-      <img class="sticker" style="top:14px; left:0;" src="assets/disco-ball.jpg" alt="">
-      <img class="sticker" style="top:0; left:34px; width:34px;" src="assets/disco-ball.jpg" alt="">
+      <img class="disco-img" style="position:absolute; top:14px; left:0;" src="assets/disco-ball.jpg" alt="">
+      <img class="disco-img" style="position:absolute; top:0; left:34px; width:34px;" src="assets/disco-ball.jpg" alt="">
     </div>
 
     <p class="invited-script">You&rsquo;ve been invited!</p>
