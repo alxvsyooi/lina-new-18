@@ -95,8 +95,10 @@
 
   /* ---------- photo cutout stickers (white-bg jpgs on cream) ---------- */
   .sticker{ position:absolute; mix-blend-mode:multiply; pointer-events:none; }
-  .lace-strip{ display:block; width:100%; height:auto; mix-blend-mode:multiply; opacity:.9; }
-  .lace-strip.flip{ transform:scaleY(-1); }
+  .lace-corner{
+    position:absolute; width:min(34vw,160px); height:auto;
+    mix-blend-mode:multiply; opacity:.8; pointer-events:none; z-index:0;
+  }
 
   @media (prefers-reduced-motion:no-preference){
     .spin-slow{ animation:spin 9s linear infinite; }
@@ -290,12 +292,12 @@
 
   <!-- ============ HERO / ENVELOPE ============ -->
   <section class="hero" id="hero">
-    <img class="lace-strip" style="position:absolute; top:0; left:0;" src="assets/lace.jpg" alt="" aria-hidden="true">
-    <img class="lace-strip flip" style="position:absolute; bottom:0; left:0;" src="assets/lace.jpg" alt="" aria-hidden="true">
+    <img class="lace-corner" style="top:0; left:0;" src="assets/lace.jpg" alt="" aria-hidden="true">
+    <img class="lace-corner" style="bottom:0; right:0; transform:rotate(180deg);" src="assets/lace.jpg" alt="" aria-hidden="true">
 
-    <img class="sticker float" style="top:9%; left:4%; width:80px;" src="assets/flowers.jpg" alt="" aria-hidden="true">
-    <img class="sticker float-slow" style="top:14%; right:6%; width:56px;" src="assets/disco-ball.jpg" alt="" aria-hidden="true">
-    <span class="sparkle float" style="bottom:22%; left:9%; font-size:1.1rem;" aria-hidden="true">✦</span>
+    <img class="sticker float" style="bottom:10%; left:5%; width:64px;" src="assets/flowers.jpg" alt="" aria-hidden="true">
+    <img class="sticker float-slow" style="top:12%; right:7%; width:52px;" src="assets/disco-ball.jpg" alt="" aria-hidden="true">
+    <span class="sparkle float" style="bottom:32%; left:10%; font-size:1.1rem;" aria-hidden="true">✦</span>
 
     <div class="bubble">You&rsquo;ve been invited!</div>
 
