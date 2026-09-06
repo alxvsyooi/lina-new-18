@@ -95,16 +95,27 @@
 
   /* ---------- photo cutout stickers (white-bg jpgs on cream) ---------- */
   .sticker{ position:absolute; mix-blend-mode:multiply; pointer-events:none; }
-  .lace-corner{
-    position:absolute; width:min(30vw,140px); height:auto; z-index:0;
-    mix-blend-mode:multiply; opacity:.8; pointer-events:none;
-  }
+  .lace-flourish{ position:absolute; width:min(20vw,88px); height:auto; z-index:0; opacity:.55; pointer-events:none; }
 
-  .disco-img{ clip-path:circle(46%); border-radius:50%; filter:drop-shadow(0 4px 8px rgba(20,4,8,.35)); }
-  .disco-big{ position:absolute; top:5%; right:3%; width:min(22vw,110px); z-index:2; }
+  .disco-css{
+    position:relative; border-radius:50%; pointer-events:none;
+    background:
+      radial-gradient(circle at 32% 26%, #ffffff 0%, #e6e7ea 14%, #b9bcc2 42%, #7d818a 72%, #565a63 100%),
+      repeating-linear-gradient(45deg, rgba(30,30,34,.35) 0 2px, transparent 2px 9px),
+      repeating-linear-gradient(-45deg, rgba(30,30,34,.35) 0 2px, transparent 2px 9px);
+    box-shadow:0 4px 10px rgba(20,4,8,.35), inset -3px -3px 6px rgba(0,0,0,.35);
+  }
+  .disco-css::before, .disco-css::after{
+    content:""; position:absolute; width:18%; height:18%; border-radius:50%;
+    background:#fff; opacity:.9; filter:blur(.5px);
+  }
+  .disco-css::before{ top:20%; left:24%; }
+  .disco-css::after{ top:55%; left:60%; width:9%; height:9%; opacity:.7; }
+
+  .disco-big{ position:absolute; top:5%; right:3%; width:min(22vw,110px); aspect-ratio:1; z-index:2; }
   .disco-cherries{ position:absolute; bottom:14%; left:4%; width:80px; height:56px; z-index:2; }
   .disco-cherries .cherry-stem{ position:absolute; inset:0; width:100%; height:100%; opacity:.6; }
-  .disco-cherries img{ width:42px; }
+  .disco-cherries .disco-css{ position:absolute; aspect-ratio:1; }
 
   @media (prefers-reduced-motion:no-preference){
     .spin-slow{ animation:spin 9s linear infinite; }
@@ -311,16 +322,40 @@
 
   <!-- ============ HERO / ENVELOPE ============ -->
   <section class="hero" id="hero">
-    <img class="lace-corner" style="top:0; left:0;" src="assets/lace.jpg" alt="" aria-hidden="true">
-    <img class="lace-corner" style="top:0; right:0; transform:scaleX(-1);" src="assets/lace.jpg" alt="" aria-hidden="true">
-    <img class="lace-corner" style="bottom:0; left:0; transform:scaleY(-1);" src="assets/lace.jpg" alt="" aria-hidden="true">
-    <img class="lace-corner" style="bottom:0; right:0; transform:rotate(180deg);" src="assets/lace.jpg" alt="" aria-hidden="true">
+    <svg class="lace-flourish" style="top:10px; left:10px;" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M2 45 Q22 45 22 22 Q22 2 45 2" fill="none" stroke="var(--accent-deep)" stroke-width="1.4"/>
+      <path d="M2 66 Q40 66 40 27 Q40 2 66 2" fill="none" stroke="var(--accent-deep)" stroke-width="1"/>
+      <circle cx="22" cy="22" r="2.4" fill="var(--gold)"/>
+      <circle cx="8" cy="50" r="1.6" fill="var(--gold)"/>
+      <circle cx="50" cy="8" r="1.6" fill="var(--gold)"/>
+    </svg>
+    <svg class="lace-flourish" style="top:10px; right:10px; transform:scaleX(-1);" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M2 45 Q22 45 22 22 Q22 2 45 2" fill="none" stroke="var(--accent-deep)" stroke-width="1.4"/>
+      <path d="M2 66 Q40 66 40 27 Q40 2 66 2" fill="none" stroke="var(--accent-deep)" stroke-width="1"/>
+      <circle cx="22" cy="22" r="2.4" fill="var(--gold)"/>
+      <circle cx="8" cy="50" r="1.6" fill="var(--gold)"/>
+      <circle cx="50" cy="8" r="1.6" fill="var(--gold)"/>
+    </svg>
+    <svg class="lace-flourish" style="bottom:10px; left:10px; transform:scaleY(-1);" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M2 45 Q22 45 22 22 Q22 2 45 2" fill="none" stroke="var(--accent-deep)" stroke-width="1.4"/>
+      <path d="M2 66 Q40 66 40 27 Q40 2 66 2" fill="none" stroke="var(--accent-deep)" stroke-width="1"/>
+      <circle cx="22" cy="22" r="2.4" fill="var(--gold)"/>
+      <circle cx="8" cy="50" r="1.6" fill="var(--gold)"/>
+      <circle cx="50" cy="8" r="1.6" fill="var(--gold)"/>
+    </svg>
+    <svg class="lace-flourish" style="bottom:10px; right:10px; transform:rotate(180deg);" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M2 45 Q22 45 22 22 Q22 2 45 2" fill="none" stroke="var(--accent-deep)" stroke-width="1.4"/>
+      <path d="M2 66 Q40 66 40 27 Q40 2 66 2" fill="none" stroke="var(--accent-deep)" stroke-width="1"/>
+      <circle cx="22" cy="22" r="2.4" fill="var(--gold)"/>
+      <circle cx="8" cy="50" r="1.6" fill="var(--gold)"/>
+      <circle cx="50" cy="8" r="1.6" fill="var(--gold)"/>
+    </svg>
 
-    <img class="disco-img disco-big float-slow" src="assets/disco-ball.jpg" alt="" aria-hidden="true">
+    <div class="disco-css disco-big float-slow" aria-hidden="true"></div>
     <div class="disco-cherries float" aria-hidden="true">
       <svg class="cherry-stem" viewBox="0 0 60 40"><path d="M50 4 C40 4 34 16 30 22 M30 22 C26 16 20 6 10 6" stroke="var(--accent-deep)" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
-      <img class="disco-img" style="position:absolute; top:14px; left:0;" src="assets/disco-ball.jpg" alt="">
-      <img class="disco-img" style="position:absolute; top:0; left:34px; width:34px;" src="assets/disco-ball.jpg" alt="">
+      <div class="disco-css" style="top:14px; left:0; width:42px;"></div>
+      <div class="disco-css" style="top:0; left:34px; width:34px;"></div>
     </div>
 
     <p class="invited-script">You&rsquo;ve been invited!</p>
