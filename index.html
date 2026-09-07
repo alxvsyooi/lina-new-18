@@ -160,13 +160,26 @@
   .envelope.is-open .envelope-inner{ animation:none; }
 
   .env-body{
-    position:absolute; inset:0; border-radius:6px;
+    position:absolute; inset:0; border-radius:6px; z-index:1;
     background-image:url("assets/envelope-ref-trim.jpg"); background-size:cover; background-position:center;
     box-shadow:var(--shadow);
   }
 
+  .env-letter{
+    position:absolute; left:9%; right:9%; bottom:6%; height:80%; z-index:0;
+    background:var(--cream); border-radius:4px 4px 1px 1px;
+    box-shadow:0 6px 18px rgba(20,4,8,.3);
+    transform:translateY(10%);
+    transition:transform 1.15s cubic-bezier(.3,1.5,.4,1) .35s, z-index 0s .3s;
+  }
+  .env-letter::before{
+    content:""; position:absolute; top:14%; left:14%; right:14%; height:2px; background:var(--line);
+    box-shadow:0 18px 0 var(--line), 0 36px 0 var(--line);
+  }
+  .envelope.is-open .env-letter{ transform:translateY(-62%); z-index:2; transition:transform 1.15s cubic-bezier(.3,1.5,.4,1) .35s, z-index 0s 0s; }
+
   .env-flap{
-    position:absolute; left:0; top:0; width:100%; height:100%;
+    position:absolute; left:0; top:0; width:100%; height:100%; z-index:3;
     background-image:url("assets/envelope-ref-trim.jpg"); background-size:cover; background-position:center;
     clip-path:polygon(0 0,100% 0,50% 70%);
     transform-origin:top center; transition:transform 1.3s cubic-bezier(.6,-.15,.2,1.15);
@@ -334,6 +347,7 @@
     <div class="envelope-wrap">
       <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Открыть приглашение">
         <div class="envelope-inner">
+          <div class="env-letter" aria-hidden="true"></div>
           <div class="env-body"></div>
           <div class="env-flap"></div>
         </div>
@@ -536,7 +550,7 @@
       requestAnimationFrame(() => {
         document.getElementById('invite').scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
-    }, 950);
+    }, 1700);
   }
 
   envelope.addEventListener('click', openEnvelope);
