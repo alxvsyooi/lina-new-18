@@ -58,6 +58,7 @@
     background:var(--cream);
     box-shadow:0 0 60px rgba(87,20,30,.12);
     isolation:isolate;
+    overflow:hidden;
   }
   .page::before{
     content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
@@ -95,7 +96,9 @@
 
   /* ---------- photo cutout stickers (real alpha PNGs) ---------- */
   .sticker{ position:absolute; pointer-events:none; }
-  .lace-corner{ position:absolute; width:min(26vw,120px); height:auto; z-index:0; opacity:.9; pointer-events:none; }
+  .lace-drape{ position:absolute; width:min(85%,460px); height:auto; z-index:0; opacity:.92; pointer-events:none; }
+  .lace-drape.top{ top:0; left:0; transform:translate(-22%,-14%); }
+  .lace-drape.bottom{ bottom:0; right:0; transform:translate(22%,14%) rotate(180deg); }
 
   .disco-photo{ pointer-events:none; filter:drop-shadow(0 3px 8px rgba(20,4,8,.3)); }
   .disco-big{ position:absolute; top:5%; right:3%; width:min(22vw,110px); z-index:2; }
@@ -159,30 +162,19 @@
   .env-body{
     position:absolute; inset:0; border-radius:6px;
     background-image:url("assets/envelope-ref-trim.jpg"); background-size:cover; background-position:center;
-    clip-path:polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+    clip-path:polygon(0 0, 50% 70%, 100% 0, 100% 100%, 0 100%);
     box-shadow:var(--shadow);
   }
 
   .env-flap{
     position:absolute; left:0; top:0; width:100%; height:100%;
     background-image:url("assets/envelope-ref-trim.jpg"); background-size:cover; background-position:center;
-    clip-path:polygon(0 0,100% 0,50% 58%);
+    clip-path:polygon(0 0,100% 0,50% 70%);
     transform-origin:top center; transition:transform 1.3s cubic-bezier(.6,-.15,.2,1.15);
     box-shadow:0 6px 14px rgba(20,4,8,.3);
     backface-visibility:hidden; border-radius:6px;
   }
   .envelope.is-open .env-flap{ transform:rotateX(178deg); }
-
-  .env-seal{
-    position:absolute; left:50%; top:56%; width:19%; aspect-ratio:1;
-    transform:translate(-50%,-50%); border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #e6c37e, var(--gold) 70%);
-    box-shadow:0 4px 10px rgba(20,4,8,.4), inset 0 -3px 5px rgba(120,85,20,.35);
-    display:flex; align-items:center; justify-content:center;
-    transition:opacity .6s ease, transform .6s ease; z-index:2;
-  }
-  .envelope.is-open .env-seal{ opacity:0; transform:translate(-50%,-50%) scale(.4); }
-  .env-seal svg{ width:62%; height:62%; }
 
   .env-hint{ font-size:.78rem; color:currentColor; opacity:.65; }
   .arrow{ color:var(--accent); }
@@ -303,10 +295,8 @@
 
   <!-- ============ HERO / ENVELOPE ============ -->
   <section class="hero" id="hero">
-    <img class="lace-corner" style="top:0; left:0;" src="assets/lace.png" alt="" aria-hidden="true">
-    <img class="lace-corner tr" style="top:0; right:0; transform:scaleX(-1);" src="assets/lace.png" alt="" aria-hidden="true">
-    <img class="lace-corner bl" style="bottom:0; left:0; transform:scaleY(-1);" src="assets/lace.png" alt="" aria-hidden="true">
-    <img class="lace-corner br" style="bottom:0; right:0; transform:rotate(180deg);" src="assets/lace.png" alt="" aria-hidden="true">
+    <img class="lace-drape top" src="assets/lace.png" alt="" aria-hidden="true">
+    <img class="lace-drape bottom" src="assets/lace.png" alt="" aria-hidden="true">
 
     <img class="disco-photo disco-big float-slow" src="assets/disco-ball.png" alt="" aria-hidden="true">
     <div class="disco-cherries float" aria-hidden="true">
@@ -322,12 +312,6 @@
         <div class="envelope-inner">
           <div class="env-body"></div>
           <div class="env-flap"></div>
-          <div class="env-seal">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 8v9M9 12c0-2 1.5-4 3-4s3 2 3 4-1.5 4-3 4-3-2-3-4z" stroke="var(--ink)" stroke-width=".8" opacity=".55" fill="none"/>
-              <path d="M12 8c-2-1-3 0-3 1.5" stroke="var(--ink)" stroke-width=".8" opacity=".55" fill="none"/>
-            </svg>
-          </div>
         </div>
       </div>
     </div>
