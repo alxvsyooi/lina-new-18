@@ -93,28 +93,15 @@
 
   .sparkle{position:absolute; color:var(--gold); opacity:.8;}
 
-  /* ---------- photo cutout stickers (white-bg jpgs on cream) ---------- */
-  .sticker{ position:absolute; mix-blend-mode:multiply; pointer-events:none; }
-  .lace-corner{
-    position:absolute; width:min(28vw,130px); height:auto; z-index:0;
-    mix-blend-mode:multiply; pointer-events:none;
-    -webkit-mask-image:radial-gradient(circle at 0 0, black 55%, transparent 88%);
-    mask-image:radial-gradient(circle at 0 0, black 55%, transparent 88%);
-  }
-  .lace-corner.tr{ -webkit-mask-image:radial-gradient(circle at 100% 0, black 55%, transparent 88%); mask-image:radial-gradient(circle at 100% 0, black 55%, transparent 88%); }
-  .lace-corner.bl{ -webkit-mask-image:radial-gradient(circle at 0 100%, black 55%, transparent 88%); mask-image:radial-gradient(circle at 0 100%, black 55%, transparent 88%); }
-  .lace-corner.br{ -webkit-mask-image:radial-gradient(circle at 100% 100%, black 55%, transparent 88%); mask-image:radial-gradient(circle at 100% 100%, black 55%, transparent 88%); }
+  /* ---------- photo cutout stickers (real alpha PNGs) ---------- */
+  .sticker{ position:absolute; pointer-events:none; }
+  .lace-corner{ position:absolute; width:min(26vw,120px); height:auto; z-index:0; opacity:.9; pointer-events:none; }
 
-  .disco-photo{
-    border-radius:50%; pointer-events:none; object-fit:cover;
-    -webkit-mask-image:radial-gradient(circle at 50% 50%, black 62%, transparent 88%);
-    mask-image:radial-gradient(circle at 50% 50%, black 62%, transparent 88%);
-    filter:drop-shadow(0 3px 8px rgba(20,4,8,.3));
-  }
-  .disco-big{ position:absolute; top:5%; right:3%; width:min(22vw,110px); aspect-ratio:1; z-index:2; }
+  .disco-photo{ pointer-events:none; filter:drop-shadow(0 3px 8px rgba(20,4,8,.3)); }
+  .disco-big{ position:absolute; top:5%; right:3%; width:min(22vw,110px); z-index:2; }
   .disco-cherries{ position:absolute; bottom:14%; left:4%; width:80px; height:56px; z-index:2; }
   .disco-cherries .cherry-stem{ position:absolute; inset:0; width:100%; height:100%; opacity:.6; }
-  .disco-cherries .disco-photo{ position:absolute; aspect-ratio:1; }
+  .disco-cherries .disco-photo{ position:absolute; }
 
   @media (prefers-reduced-motion:no-preference){
     .spin-slow{ animation:spin 9s linear infinite; }
@@ -159,7 +146,7 @@
   .envelope-wrap{ position:relative; width:min(78vw,320px); z-index:1; }
 
   .envelope{
-    position:relative; width:100%; aspect-ratio:16/11; cursor:pointer;
+    position:relative; width:100%; aspect-ratio:1061/752; cursor:pointer;
     -webkit-tap-highlight-color:transparent;
   }
   .envelope-inner{ position:relative; width:100%; height:100%; }
@@ -171,28 +158,23 @@
 
   .env-body{
     position:absolute; inset:0; border-radius:6px;
-    background:linear-gradient(155deg,var(--ink-warm),var(--ink));
+    background-image:url("assets/envelope-ref-trim.jpg"); background-size:cover; background-position:center;
+    clip-path:polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
     box-shadow:var(--shadow);
-    overflow:hidden;
   }
-  .env-body::before, .env-body::after{
-    content:""; position:absolute; top:0; width:52%; height:100%;
-    background:rgba(255,255,255,.06);
-    clip-path:polygon(0 0,100% 0,0 100%);
-  }
-  .env-body::after{ right:0; left:auto; transform:scaleX(-1); }
 
   .env-flap{
-    position:absolute; left:0; top:0; width:100%; height:58%;
-    background:linear-gradient(160deg,var(--ink-mid),var(--ink-warm));
-    clip-path:polygon(0 0,100% 0,50% 100%);
+    position:absolute; left:0; top:0; width:100%; height:100%;
+    background-image:url("assets/envelope-ref-trim.jpg"); background-size:cover; background-position:center;
+    clip-path:polygon(0 0,100% 0,50% 58%);
     transform-origin:top center; transition:transform 1.3s cubic-bezier(.6,-.15,.2,1.15);
     box-shadow:0 6px 14px rgba(20,4,8,.3);
+    backface-visibility:hidden; border-radius:6px;
   }
   .envelope.is-open .env-flap{ transform:rotateX(178deg); }
 
   .env-seal{
-    position:absolute; left:50%; top:44%; width:19%; aspect-ratio:1;
+    position:absolute; left:50%; top:56%; width:19%; aspect-ratio:1;
     transform:translate(-50%,-50%); border-radius:50%;
     background:radial-gradient(circle at 35% 30%, #e6c37e, var(--gold) 70%);
     box-shadow:0 4px 10px rgba(20,4,8,.4), inset 0 -3px 5px rgba(120,85,20,.35);
@@ -321,16 +303,16 @@
 
   <!-- ============ HERO / ENVELOPE ============ -->
   <section class="hero" id="hero">
-    <img class="lace-corner" style="top:0; left:0;" src="assets/lace.jpg" alt="" aria-hidden="true">
-    <img class="lace-corner tr" style="top:0; right:0; transform:scaleX(-1);" src="assets/lace.jpg" alt="" aria-hidden="true">
-    <img class="lace-corner bl" style="bottom:0; left:0; transform:scaleY(-1);" src="assets/lace.jpg" alt="" aria-hidden="true">
-    <img class="lace-corner br" style="bottom:0; right:0; transform:rotate(180deg);" src="assets/lace.jpg" alt="" aria-hidden="true">
+    <img class="lace-corner" style="top:0; left:0;" src="assets/lace.png" alt="" aria-hidden="true">
+    <img class="lace-corner tr" style="top:0; right:0; transform:scaleX(-1);" src="assets/lace.png" alt="" aria-hidden="true">
+    <img class="lace-corner bl" style="bottom:0; left:0; transform:scaleY(-1);" src="assets/lace.png" alt="" aria-hidden="true">
+    <img class="lace-corner br" style="bottom:0; right:0; transform:rotate(180deg);" src="assets/lace.png" alt="" aria-hidden="true">
 
-    <img class="disco-photo disco-big float-slow" src="assets/disco-ball.jpg" alt="" aria-hidden="true">
+    <img class="disco-photo disco-big float-slow" src="assets/disco-ball.png" alt="" aria-hidden="true">
     <div class="disco-cherries float" aria-hidden="true">
       <svg class="cherry-stem" viewBox="0 0 60 40"><path d="M50 4 C40 4 34 16 30 22 M30 22 C26 16 20 6 10 6" stroke="var(--accent-deep)" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
-      <img class="disco-photo" style="top:14px; left:0; width:42px;" src="assets/disco-ball.jpg" alt="">
-      <img class="disco-photo" style="top:0; left:34px; width:34px;" src="assets/disco-ball.jpg" alt="">
+      <img class="disco-photo" style="top:14px; left:0; width:42px;" src="assets/disco-ball.png" alt="">
+      <img class="disco-photo" style="top:0; left:34px; width:34px;" src="assets/disco-ball.png" alt="">
     </div>
 
     <p class="invited-script">You&rsquo;ve been invited!</p>
@@ -404,8 +386,8 @@
 
   <!-- ============ PROGRAM ============ -->
   <section id="program">
-    <img class="sticker float-slow" style="top:6%; right:4%; width:64px;" src="assets/wine-glasses.jpg" alt="" aria-hidden="true">
-    <img class="sticker float" style="bottom:8%; left:3%; width:52px;" src="assets/cocktail.jpg" alt="" aria-hidden="true">
+    <img class="sticker float-slow" style="top:6%; right:4%; width:64px;" src="assets/wine-glasses.png" alt="" aria-hidden="true">
+    <img class="sticker float" style="bottom:8%; left:3%; width:52px;" src="assets/cocktail.png" alt="" aria-hidden="true">
     <p class="eyebrow">Что будет</p>
     <h2 class="section-title">В программе</h2>
     <p class="section-lede">Всё для того, чтобы провести вечер идеально.</p>
@@ -439,8 +421,8 @@
       <div class="photo-stack float-slow">
         <img class="party-photo party-photo-2" src="assets/party-photo-3.jpg" alt="">
         <img class="party-photo party-photo-1" src="assets/party-photo-1.jpg" alt="Лина на прошлом дне рождения">
-        <img class="sash-sticker" src="assets/sash.jpg" alt="" aria-hidden="true">
-        <img class="sticker" style="bottom:-12px; left:-16px; width:60px;" src="assets/cake.jpg" alt="" aria-hidden="true">
+        <img class="sash-sticker" src="assets/sash-trim.jpg" alt="" aria-hidden="true">
+        <img class="sticker" style="bottom:-12px; left:-16px; width:60px;" src="assets/cake-trim.jpg" alt="" aria-hidden="true">
       </div>
 
       <p class="spot-script">Flowers &amp; party</p>
@@ -451,8 +433,8 @@
 
   <!-- ============ WISHLIST ============ -->
   <section id="wishlist" style="text-align:center;">
-    <img class="sticker float" style="top:8%; left:6%; width:48px;" src="assets/bow.jpg" alt="" aria-hidden="true">
-    <img class="sticker float-slow" style="bottom:10%; right:5%; width:52px;" src="assets/lips.jpg" alt="" aria-hidden="true">
+    <img class="sticker float" style="top:8%; left:6%; width:48px;" src="assets/bow.png" alt="" aria-hidden="true">
+    <img class="sticker float-slow" style="bottom:10%; right:5%; width:52px;" src="assets/lips.png" alt="" aria-hidden="true">
     <p class="eyebrow">Про подарки</p>
     <h2 class="section-title">Вишлист</h2>
 
