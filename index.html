@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lina Turns 18</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Beau+Rivage&family=Caveat:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Beau+Rivage&family=Caveat:wght@600;700&family=Alex+Brush&family=Manrope:wght@400;500;600;700;800&display=swap');
 
   :root{
     --ink:#570e1a;
@@ -182,21 +182,44 @@
   .arrow{ color:var(--accent); }
 
   /* ================= INVITE ================= */
-  .invite{ text-align:center; display:flex; flex-direction:column; align-items:center; gap:clamp(.5rem,3cqw,1rem); }
-  .invite .to{ font-size:clamp(1.1rem,4cqw,1.4rem); font-weight:500; opacity:.7; }
-  .invite .name{ font-family:'Beau Rivage',cursive; font-size:clamp(3.2rem,16cqw,5rem); color:var(--accent-deep); line-height:1; margin-top:.2rem;}
-  .invite .party{ font-size:clamp(1.6rem,7cqw,2.3rem); font-weight:600; }
+  .invite{ position:relative; text-align:center; display:flex; flex-direction:column; align-items:center; gap:.35rem; overflow:visible; }
+  .invite-eyebrow{
+    font-size:clamp(.8rem,3cqw,.95rem); font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent-deep); display:flex; align-items:center; gap:.6em; margin-bottom:.3rem;
+  }
+  .invite-eyebrow::before, .invite-eyebrow::after{ content:""; width:1.6em; height:1px; background:var(--accent-deep); opacity:.6; }
+  .invite .name{ font-family:'Alex Brush',cursive; font-size:clamp(4.4rem,22cqw,7.2rem); color:var(--accent-deep); line-height:.9; }
+  .invite .party{ font-size:clamp(1.3rem,5.6cqw,1.7rem); font-weight:500; margin-top:.2rem; }
+  .flourish{ width:120px; height:auto; margin:.5rem 0; color:var(--accent-deep); opacity:.75; }
+
+  .big18-row{ display:flex; align-items:center; gap:clamp(.6rem,3cqw,1.2rem); margin:.2rem 0; }
+  .spark{ width:26px; height:40px; color:var(--accent); opacity:.8; }
+  .spark.right{ transform:scaleX(-1); }
   .big-18{
-    font-size:clamp(6rem,30cqw,11rem); font-weight:700; line-height:.85;
+    font-size:clamp(5.2rem,26cqw,9rem); font-weight:700; line-height:.85;
     color:transparent; -webkit-text-stroke:3px var(--accent-deep);
-    margin:.2em 0;
+    margin:0;
   }
-  .datechip{
-    margin-top:.5rem; background:var(--cream); border:1px solid var(--line);
-    border-radius:16px; padding:.9rem 1.6rem; box-shadow:var(--shadow); color:var(--text-dark);
-    font-weight:700; font-size:clamp(1rem,4cqw,1.25rem); letter-spacing:.02em;
+
+  .invite-media{ display:flex; align-items:center; justify-content:center; gap:clamp(.8rem,4cqw,1.6rem); margin:.6rem 0 .2rem; }
+  .vinyl-click{ position:relative; width:clamp(84px,24cqw,120px); aspect-ratio:1; }
+  .vinyl-click img{ width:100%; height:100%; border-radius:50%; filter:drop-shadow(0 4px 10px rgba(20,4,8,.35)); }
+  .vinyl-click svg{ position:absolute; inset:-22%; width:144%; height:144%; }
+  .vinyl-click text{ font-family:'Fraunces',serif; font-weight:700; font-size:9px; letter-spacing:.15em; fill:var(--accent-deep); }
+  .cake-deco{ width:clamp(64px,18cqw,84px); height:auto; }
+  .media-disco{ width:clamp(64px,18cqw,84px); height:auto; }
+
+  .invite-datechip{
+    margin-top:.7rem; font-family:'Fraunces',serif; font-weight:700; letter-spacing:.05em;
+    font-size:clamp(1.05rem,4.6cqw,1.4rem); color:var(--accent-deep);
+    display:flex; align-items:center; gap:.5em; text-transform:uppercase;
   }
-  .scrolldown{ margin-top:1.5rem; font-size:1.4rem; color:var(--accent-deep); }
+  .invite-datechip .dot{ opacity:.5; font-weight:400; }
+  .invite-tagline{
+    margin-top:.5rem; font-style:italic; opacity:.75; font-size:.92rem; max-width:32ch; line-height:1.5;
+  }
+
+  .scrolldown{ margin-top:1.2rem; font-size:1.4rem; color:var(--accent-deep); }
   @media (prefers-reduced-motion:no-preference){ .scrolldown{ animation:floaty 2.4s ease-in-out infinite; } }
 
   /* ================= PANELS ================= */
@@ -330,11 +353,44 @@
 
   <!-- ============ INVITE HEADLINE ============ -->
   <section class="invite" id="invite">
-    <p class="eyebrow">You're invited to</p>
-    <p class="name">Lina&rsquo;s</p>
-    <h1 class="party">18th birthday party!</h1>
-    <div class="big-18">18</div>
-    <div class="datechip">Суббота · 19 сентября · 17:00</div>
+    <img class="sticker float-slow" style="top:-8px; left:-16px; width:76px;" src="assets/disco-ball.png" alt="" aria-hidden="true">
+    <img class="sticker float" style="top:-4px; right:-20px; width:92px;" src="assets/disco-ball.png" alt="" aria-hidden="true">
+    <svg class="sticker float" style="top:2%; left:38%; width:24px;" viewBox="0 0 24 24" fill="var(--gold)" aria-hidden="true"><path d="M12 0l2.6 8.1H23l-6.9 5 2.7 8-6.8-5-6.8 5 2.7-8L1 8.1h8.4z"/></svg>
+    <svg class="sticker float-slow" style="top:22%; left:6%; width:16px;" viewBox="0 0 24 24" fill="var(--gold)" opacity=".8" aria-hidden="true"><path d="M12 0l2.6 8.1H23l-6.9 5 2.7 8-6.8-5-6.8 5 2.7-8L1 8.1h8.4z"/></svg>
+
+    <p class="invite-eyebrow">You are invited to</p>
+    <p class="name">Lina</p>
+    <h1 class="party">18th Birthday Party!</h1>
+
+    <svg class="flourish" viewBox="0 0 120 24" fill="none" aria-hidden="true">
+      <path d="M2 12h40M78 12h40" stroke="currentColor" stroke-width="1"/>
+      <path d="M60 12c-6-8-16-6-14 0 2 6 12 4 14-2 2-6-8-8-14 0" stroke="currentColor" stroke-width="1" fill="none"/>
+    </svg>
+
+    <div class="big18-row">
+      <svg class="spark" viewBox="0 0 26 40" fill="none" aria-hidden="true"><path d="M2 6l14 8M2 20l16 1M4 34l13-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <div class="big-18">18</div>
+      <svg class="spark right" viewBox="0 0 26 40" fill="none" aria-hidden="true"><path d="M2 6l14 8M2 20l16 1M4 34l13-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+
+    <div class="invite-media">
+      <div class="vinyl-click spin-slow">
+        <img src="assets/vinyl-red.png" alt="">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <defs><path id="vinylCircle" d="M50,6 a44,44 0 1,1 -0.1,0"/></defs>
+          <text><textPath href="#vinylCircle" startOffset="0%">CLICK TO PLAY · CLICK TO PLAY ·</textPath></text>
+        </svg>
+      </div>
+      <img class="cake-deco" src="assets/cake-trim.jpg" alt="">
+      <img class="media-disco" src="assets/disco-ball.png" alt="">
+    </div>
+
+    <div class="invite-datechip">Saturday <span class="dot">|</span> 19 <span class="dot">|</span> September</div>
+    <p class="invite-tagline">Let&rsquo;s celebrate, make memories, and have a day to remember!</p>
+
+    <img class="sticker" style="bottom:-6px; left:-14px; width:56px;" src="assets/lips.png" alt="" aria-hidden="true">
+    <img class="sticker" style="bottom:-10px; right:-10px; width:96px; mix-blend-mode:multiply;" src="assets/lace.png" alt="" aria-hidden="true">
+
     <div class="scrolldown">⌄</div>
   </section>
 
