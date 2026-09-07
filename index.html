@@ -112,8 +112,6 @@
   }
 
   @media (prefers-reduced-motion:no-preference){
-    .float{ animation:floaty 6s ease-in-out infinite; }
-    .float-slow{ animation:floaty 9s ease-in-out infinite; }
     @keyframes floaty{ 0%,100%{transform:translateY(0) rotate(var(--r,0deg));} 50%{transform:translateY(-10px) rotate(var(--r,0deg));} }
   }
 
@@ -164,7 +162,6 @@
   .env-body{
     position:absolute; inset:0; border-radius:6px;
     background-image:url("assets/envelope-ref-trim.jpg"); background-size:cover; background-position:center;
-    clip-path:polygon(0 0, 50% 70%, 100% 0, 100% 100%, 0 100%);
     box-shadow:var(--shadow);
   }
 
@@ -325,8 +322,8 @@
     <img class="lace-band top" src="assets/lace-band-top.png" alt="" aria-hidden="true">
     <img class="lace-band bottom" src="assets/lace-band-bottom.png" alt="" aria-hidden="true">
 
-    <img class="disco-photo disco-big float-slow" src="assets/disco-ball.png" alt="" aria-hidden="true">
-    <div class="disco-cherries float" aria-hidden="true">
+    <img class="disco-photo disco-big" src="assets/disco-ball.png" alt="" aria-hidden="true">
+    <div class="disco-cherries" aria-hidden="true">
       <svg class="cherry-stem" viewBox="0 0 60 40"><path d="M50 4 C40 4 34 16 30 22 M30 22 C26 16 20 6 10 6" stroke="var(--accent-deep)" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
       <img class="disco-photo" style="top:14px; left:0; width:42px;" src="assets/disco-ball.png" alt="">
       <img class="disco-photo" style="top:0; left:34px; width:34px;" src="assets/disco-ball.png" alt="">
@@ -355,10 +352,10 @@
 
   <!-- ============ INVITE HEADLINE ============ -->
   <section class="invite" id="invite">
-    <img class="sticker float-slow" style="top:-8px; left:-16px; width:76px;" src="assets/disco-ball.png" alt="" aria-hidden="true">
-    <img class="sticker float" style="top:-4px; right:-20px; width:92px;" src="assets/disco-ball.png" alt="" aria-hidden="true">
-    <svg class="sticker float" style="top:2%; left:38%; width:24px;" viewBox="0 0 24 24" fill="var(--gold)" aria-hidden="true"><path d="M12 0l2.6 8.1H23l-6.9 5 2.7 8-6.8-5-6.8 5 2.7-8L1 8.1h8.4z"/></svg>
-    <svg class="sticker float-slow" style="top:22%; left:6%; width:16px;" viewBox="0 0 24 24" fill="var(--gold)" opacity=".8" aria-hidden="true"><path d="M12 0l2.6 8.1H23l-6.9 5 2.7 8-6.8-5-6.8 5 2.7-8L1 8.1h8.4z"/></svg>
+    <img class="sticker" style="top:-8px; left:-16px; width:76px;" src="assets/disco-ball.png" alt="" aria-hidden="true">
+    <img class="sticker" style="top:-4px; right:-20px; width:92px;" src="assets/disco-ball.png" alt="" aria-hidden="true">
+    <svg class="sticker" style="top:2%; left:38%; width:24px;" viewBox="0 0 24 24" fill="var(--gold)" aria-hidden="true"><path d="M12 0l2.6 8.1H23l-6.9 5 2.7 8-6.8-5-6.8 5 2.7-8L1 8.1h8.4z"/></svg>
+    <svg class="sticker" style="top:22%; left:6%; width:16px;" viewBox="0 0 24 24" fill="var(--gold)" opacity=".8" aria-hidden="true"><path d="M12 0l2.6 8.1H23l-6.9 5 2.7 8-6.8-5-6.8 5 2.7-8L1 8.1h8.4z"/></svg>
 
     <p class="invite-eyebrow">You are invited to</p>
     <p class="name">Lina</p>
@@ -433,8 +430,8 @@
 
   <!-- ============ PROGRAM ============ -->
   <section id="program">
-    <img class="sticker float-slow" style="top:6%; right:4%; width:64px;" src="assets/wine-glasses.png" alt="" aria-hidden="true">
-    <img class="sticker float" style="bottom:8%; left:3%; width:52px;" src="assets/cocktail.png" alt="" aria-hidden="true">
+    <img class="sticker" style="top:6%; right:4%; width:64px;" src="assets/wine-glasses.png" alt="" aria-hidden="true">
+    <img class="sticker" style="bottom:8%; left:3%; width:52px;" src="assets/cocktail.png" alt="" aria-hidden="true">
     <p class="eyebrow">Что будет</p>
     <h2 class="section-title">В программе</h2>
     <p class="section-lede">Всё для того, чтобы провести вечер идеально.</p>
@@ -459,13 +456,13 @@
       <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
     </div>
     <div class="panel spot-card">
-      <div class="flower float" style="bottom:8%; right:4%; --r:10deg;" aria-hidden="true">
+      <div class="flower" style="bottom:8%; right:4%; --r:10deg;" aria-hidden="true">
         <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
         <div class="center"></div>
       </div>
       <img class="sticker spin-slow" style="top:2%; right:6%; width:58px;" src="assets/vinyl-red.jpg" alt="" aria-hidden="true">
 
-      <div class="photo-stack float-slow">
+      <div class="photo-stack">
         <img class="party-photo party-photo-2" src="assets/party-photo-3.jpg" alt="">
         <img class="party-photo party-photo-1" src="assets/party-photo-1.jpg" alt="Лина на прошлом дне рождения">
         <img class="sash-sticker" src="assets/sash-trim.jpg" alt="" aria-hidden="true">
@@ -480,8 +477,8 @@
 
   <!-- ============ WISHLIST ============ -->
   <section id="wishlist" style="text-align:center;">
-    <img class="sticker float" style="top:8%; left:6%; width:48px;" src="assets/bow.png" alt="" aria-hidden="true">
-    <img class="sticker float-slow" style="bottom:10%; right:5%; width:52px;" src="assets/lips.png" alt="" aria-hidden="true">
+    <img class="sticker" style="top:8%; left:6%; width:48px;" src="assets/bow.png" alt="" aria-hidden="true">
+    <img class="sticker" style="bottom:10%; right:5%; width:52px;" src="assets/lips.png" alt="" aria-hidden="true">
     <p class="eyebrow">Про подарки</p>
     <h2 class="section-title">Вишлист</h2>
 
