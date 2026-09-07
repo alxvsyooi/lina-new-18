@@ -96,9 +96,16 @@
 
   /* ---------- photo cutout stickers (real alpha PNGs) ---------- */
   .sticker{ position:absolute; pointer-events:none; }
-  .lace-drape{ position:absolute; width:min(85%,460px); height:auto; z-index:0; opacity:.92; pointer-events:none; }
-  .lace-drape.top{ top:0; left:0; transform:translate(-22%,-14%); }
-  .lace-drape.bottom{ bottom:0; right:0; transform:translate(22%,14%) rotate(180deg); }
+  .lace-band{ position:absolute; left:0; right:0; height:30px; background:var(--ink); z-index:0; pointer-events:none; }
+  .lace-band.top{ top:0; }
+  .lace-band.bottom{ bottom:0; }
+  .lace-scallops{
+    position:absolute; left:0; right:0; height:16px;
+    background-image:radial-gradient(circle at 11px 0, var(--ink) 11px, transparent 11.5px);
+    background-size:22px 16px; background-repeat:repeat-x;
+  }
+  .lace-band.top .lace-scallops{ top:100%; }
+  .lace-band.bottom .lace-scallops{ bottom:100%; background-image:radial-gradient(circle at 11px 16px, var(--ink) 11px, transparent 11.5px); }
 
   .disco-photo{ pointer-events:none; filter:drop-shadow(0 3px 8px rgba(20,4,8,.3)); }
   .disco-big{ position:absolute; top:5%; right:3%; width:min(22vw,110px); z-index:2; }
@@ -138,7 +145,8 @@
     color:var(--accent-deep); margin:0; text-align:center; position:relative; z-index:1;
   }
 
-  .click-cta{ display:flex; flex-direction:column; align-items:center; gap:.4rem; margin-top:1.4rem; position:relative; z-index:1; }
+  .click-cta{ display:flex; flex-direction:column; align-items:center; gap:.2rem; margin-top:1.4rem; position:relative; z-index:1; }
+  .click-cta .cta-arrow{ position:absolute; right:-2.6rem; top:-2.6rem; }
   .click-cta span{
     font-family:'Fraunces',serif; font-weight:300; letter-spacing:.06em;
     text-decoration:underline; text-underline-offset:7px; text-decoration-thickness:1px;
@@ -295,8 +303,8 @@
 
   <!-- ============ HERO / ENVELOPE ============ -->
   <section class="hero" id="hero">
-    <img class="lace-drape top" src="assets/lace.png" alt="" aria-hidden="true">
-    <img class="lace-drape bottom" src="assets/lace.png" alt="" aria-hidden="true">
+    <div class="lace-band top" aria-hidden="true"><div class="lace-scallops"></div></div>
+    <div class="lace-band bottom" aria-hidden="true"><div class="lace-scallops"></div></div>
 
     <img class="disco-photo disco-big float-slow" src="assets/disco-ball.png" alt="" aria-hidden="true">
     <div class="disco-cherries float" aria-hidden="true">
@@ -318,7 +326,7 @@
 
     <div class="click-cta" id="open-label">
       <span>Click the envelope!!!</span>
-      <svg class="cta-arrow" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M8 30c0-14 10-20 22-18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M24 8l6 4-6 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="cta-arrow" viewBox="0 0 40 46" fill="none" aria-hidden="true"><path d="M8 44C4 24 10 8 26 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M15 3l11 1-5 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
   </section>
 
