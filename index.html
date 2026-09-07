@@ -190,7 +190,9 @@
   .invite-eyebrow::before, .invite-eyebrow::after{ content:""; width:1.6em; height:1px; background:var(--accent-deep); opacity:.6; }
   .invite .name{ font-family:'Alex Brush',cursive; font-size:clamp(4.4rem,22cqw,7.2rem); color:var(--accent-deep); line-height:.9; }
   .invite .party{ font-size:clamp(1.3rem,5.6cqw,1.7rem); font-weight:500; margin-top:.2rem; }
-  .flourish{ width:120px; height:auto; margin:.5rem 0; color:var(--accent-deep); opacity:.75; }
+  .flourish{ display:flex; align-items:center; gap:.5rem; width:150px; margin:.5rem 0; }
+  .flourish-line{ flex:1; height:1px; background:var(--accent-deep); opacity:.5; }
+  .flourish img{ width:26px; height:auto; opacity:.8; }
 
   .big18-row{ display:flex; align-items:center; gap:clamp(.6rem,3cqw,1.2rem); margin:.2rem 0; }
   .spark{ width:26px; height:40px; color:var(--accent); opacity:.8; }
@@ -362,10 +364,11 @@
     <p class="name">Lina</p>
     <h1 class="party">18th Birthday Party!</h1>
 
-    <svg class="flourish" viewBox="0 0 120 24" fill="none" aria-hidden="true">
-      <path d="M2 12h40M78 12h40" stroke="currentColor" stroke-width="1"/>
-      <path d="M60 12c-6-8-16-6-14 0 2 6 12 4 14-2 2-6-8-8-14 0" stroke="currentColor" stroke-width="1" fill="none"/>
-    </svg>
+    <div class="flourish">
+      <span class="flourish-line"></span>
+      <img src="assets/bow.png" alt="" aria-hidden="true">
+      <span class="flourish-line"></span>
+    </div>
 
     <div class="big18-row">
       <svg class="spark" viewBox="0 0 26 40" fill="none" aria-hidden="true"><path d="M2 6l14 8M2 20l16 1M4 34l13-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -381,7 +384,7 @@
           <text><textPath href="#vinylCircle" startOffset="0%">CLICK TO PLAY · CLICK TO PLAY ·</textPath></text>
         </svg>
       </div>
-      <img class="cake-deco" src="assets/cake-trim.jpg" alt="">
+      <img class="cake-deco" src="assets/cake-trim.png" alt="">
       <img class="media-disco" src="assets/disco-ball.png" alt="">
     </div>
 
