@@ -175,11 +175,12 @@
     position:absolute; left:0; top:0; width:100%; height:100%; z-index:2;
     background-image:url("assets/envelope-ref-trim.jpg"); background-size:cover; background-position:center;
     clip-path:polygon(0 0,100% 0,50% 70%);
-    transform-origin:top center; transition:transform 1.3s cubic-bezier(.6,-.15,.2,1.15);
+    transform-origin:top center;
+    transition:transform 1.3s cubic-bezier(.6,-.15,.2,1.15), opacity .3s ease .55s;
     box-shadow:0 6px 14px rgba(20,4,8,.3);
     backface-visibility:hidden; border-radius:6px;
   }
-  .envelope.is-open .env-flap{ transform:rotateX(178deg); }
+  .envelope.is-open .env-flap{ transform:rotateX(178deg); opacity:0; }
 
   .env-hint{ font-size:.78rem; color:currentColor; opacity:.65; }
   .arrow{ color:var(--accent); }
