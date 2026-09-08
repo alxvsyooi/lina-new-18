@@ -277,17 +277,24 @@
   }
 
   /* ================= BIRTHDAY SPOTLIGHT ================= */
-  .spotlight{ background:linear-gradient(180deg,var(--ink-mid),var(--ink)); }
+  .spotlight{ background:linear-gradient(180deg,var(--ink-mid),var(--ink)); display:flex; flex-direction:column; justify-content:center; min-height:640px; }
+  @media (max-width:640px){ .spotlight{ min-height:100svh; } }
   .garland{ display:flex; justify-content:space-between; margin-bottom:1.6rem; padding:0 .4rem; }
   .bulb{ width:10px; height:10px; border-radius:50%; background:var(--gold); box-shadow:0 0 8px 2px rgba(199,154,85,.7);}
   .bulb:nth-child(odd){ margin-top:10px; }
 
-  .spot-card{ position:relative; padding:clamp(2rem,8cqw,2.6rem) clamp(1.2rem,6cqw,1.8rem); text-align:center; overflow:visible;}
-  .birthday-photo{ width:min(52vw,200px); aspect-ratio:4/5; margin:0 auto 1.6rem; }
+  .spot-card{ position:relative; padding:clamp(2.2rem,8cqw,2.8rem) clamp(1.2rem,6cqw,1.8rem) clamp(2.8rem,10cqw,3.6rem); text-align:center; overflow:visible;}
+  .birthday-photo{ position:relative; width:min(74vw,290px); aspect-ratio:4/5; margin:0 auto 2.2rem; z-index:2; }
   .birthday-photo img{
     width:100%; height:100%; object-fit:cover; object-position:50% 22%; display:block;
-    border:8px solid var(--cream); box-shadow:var(--shadow); border-radius:4px;
+    border:12px solid var(--cream); box-shadow:var(--shadow); border-radius:4px;
   }
+  .bday-ribbon{
+    position:absolute; z-index:3; left:50%; bottom:-9%; width:128%; max-width:360px;
+    transform:translateX(-50%) rotate(-6deg); mix-blend-mode:multiply; pointer-events:none;
+  }
+  .bday-disco{ top:-12%; left:-14%; width:42%; max-width:150px; }
+  .bday-bow{ top:-6%; right:-8%; width:28%; max-width:110px; transform:rotate(10deg); }
   .spot-num{ font-family:'Fraunces',serif; font-weight:700; font-size:clamp(4rem,20cqw,6.5rem); color:var(--accent-deep); line-height:.85; margin:.1em 0;}
   .spot-title{ font-size:clamp(1.5rem,6cqw,2rem); font-weight:600; }
 
@@ -453,12 +460,11 @@
       <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
     </div>
     <div class="panel spot-card">
-      <div class="flower" style="bottom:8%; right:4%; --r:10deg;" aria-hidden="true">
-        <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
-        <div class="center"></div>
-      </div>
+      <img class="sticker bday-disco" src="assets/disco-ball.png" alt="" aria-hidden="true">
+      <img class="sticker bday-bow" src="assets/bow.png" alt="" aria-hidden="true">
       <div class="birthday-photo">
         <img src="assets/birthday-photo.jpg" alt="Лина в детстве на дне рождения">
+        <img class="bday-ribbon" src="assets/sash-trim.jpg" alt="" aria-hidden="true">
       </div>
 
       <div class="spot-num">18</div>
