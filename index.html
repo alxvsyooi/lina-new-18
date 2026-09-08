@@ -136,7 +136,7 @@
   }
 
   .click-cta{ display:flex; flex-direction:column; align-items:center; gap:.2rem; margin-top:1.4rem; position:relative; z-index:1; }
-  .click-cta .cta-arrow{ position:absolute; right:-2.6rem; top:-3.6rem; }
+  .click-cta .cta-arrow{ position:absolute; right:clamp(-2.6rem,-7cqw,-1.2rem); top:clamp(-3.6rem,-10cqw,-1.6rem); }
   .click-cta .cta-text{ position:relative; display:inline-block; }
   .click-cta span{
     font-family:'Fraunces',serif; font-weight:300; letter-spacing:.06em;
@@ -232,7 +232,7 @@
   .section-title{ font-size:clamp(1.5rem,6cqw,1.9rem); margin-bottom:.3rem; }
   .section-lede{ opacity:.7; margin-bottom:1.4rem; font-size:.95rem; }
 
-  .cottage{ width:100%; max-width:280px; margin:0 auto 1.4rem; display:block; }
+  .cottage{ width:100%; max-width:280px; height:auto; margin:0 auto 1.4rem; display:block; border-radius:12px; filter:drop-shadow(0 12px 22px rgba(20,4,8,.35)); }
 
   .infolist{ display:flex; flex-direction:column; gap:.7rem; margin:1.2rem 0; }
   .infochip{
@@ -285,7 +285,7 @@
   .spot-card{ position:relative; padding:clamp(2rem,8cqw,2.6rem) clamp(1.2rem,6cqw,1.8rem); text-align:center; overflow:visible;}
   .birthday-photo{ width:min(52vw,200px); aspect-ratio:4/5; margin:0 auto 1.6rem; }
   .birthday-photo img{
-    width:100%; height:100%; object-fit:cover; display:block;
+    width:100%; height:100%; object-fit:cover; object-position:50% 22%; display:block;
     border:8px solid var(--cream); box-shadow:var(--shadow); border-radius:4px;
   }
   .spot-num{ font-family:'Fraunces',serif; font-weight:700; font-size:clamp(4rem,20cqw,6.5rem); color:var(--accent-deep); line-height:.85; margin:.1em 0;}
@@ -403,14 +403,7 @@
     <h2 class="section-title">Уютный коттедж</h2>
     <p class="section-lede">С бассейном и сауной</p>
 
-    <svg class="cottage" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <polygon points="20,80 110,20 200,80" fill="var(--gold)"/>
-      <rect x="35" y="80" width="150" height="70" fill="var(--cream)" stroke="var(--line)" stroke-width="2"/>
-      <rect x="95" y="105" width="30" height="45" fill="var(--cream-deep)"/>
-      <rect x="50" y="95" width="26" height="26" fill="var(--cream-deep)"/>
-      <rect x="144" y="95" width="26" height="26" fill="var(--cream-deep)"/>
-      <rect x="105" y="40" width="10" height="20" fill="var(--gold)"/>
-    </svg>
+    <img class="cottage" src="assets/cottage.png" alt="Коттедж Kuliga House">
 
     <div class="infolist">
       <div class="infochip"><span class="ico">📍</span><span>Kuliga House</span></div>
@@ -464,7 +457,7 @@
         <div class="center"></div>
       </div>
       <div class="birthday-photo">
-        <img src="assets/party-photo-1.jpg" alt="Лина на прошлом дне рождения">
+        <img src="assets/birthday-photo.jpg" alt="Лина в детстве на дне рождения">
       </div>
 
       <div class="spot-num">18</div>
