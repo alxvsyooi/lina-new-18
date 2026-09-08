@@ -122,7 +122,7 @@
     padding-top:clamp(3rem,10cqw,4rem); padding-bottom:clamp(3rem,10cqw,4rem);
     transition:opacity 1s ease, filter 1s ease;
   }
-  .hero.is-opened{ opacity:0; filter:blur(6px); pointer-events:none; }
+  .hero.is-opened{ opacity:0; filter:blur(6px); pointer-events:none; position:absolute; inset:0; z-index:5; }
 
   .bubble{
     background:var(--cream); border:1px solid var(--line); border-radius:999px;
@@ -191,9 +191,9 @@
     color:var(--accent-deep); display:flex; align-items:center; gap:.6em; margin-bottom:.3rem;
   }
   .invite-eyebrow::before, .invite-eyebrow::after{ content:""; width:1.6em; height:1px; background:var(--accent-deep); opacity:.6; }
-  .invite .name{ font-family:'Alex Brush',cursive; font-size:clamp(4.4rem,22cqw,7.2rem); color:var(--accent-deep); line-height:.9; }
+  .invite .name{ font-family:'Alex Brush',cursive; font-size:clamp(5.4rem,28cqw,9rem); color:var(--accent-deep); line-height:.9; }
   .invite .party{ font-size:clamp(1.3rem,5.6cqw,1.7rem); font-weight:500; margin-top:.2rem; }
-  .flourish{ display:flex; align-items:center; gap:.5rem; width:150px; margin:.5rem 0; }
+  .flourish{ display:flex; align-items:center; gap:.5rem; width:150px; margin:.3rem 0; }
   .flourish-line{ flex:1; height:1px; background:var(--accent-deep); opacity:.5; }
   .flourish img{ width:26px; height:auto; opacity:.8; }
 
@@ -206,13 +206,13 @@
     margin:0;
   }
 
-  .invite-media{ display:flex; align-items:center; justify-content:center; gap:clamp(.8rem,4cqw,1.6rem); margin:.6rem 0 .2rem; }
-  .vinyl-click{ position:relative; width:clamp(84px,24cqw,120px); aspect-ratio:1; }
+  .invite-media{ position:relative; display:flex; align-items:center; justify-content:center; gap:clamp(1.3rem,6cqw,2rem); margin:.9rem 0 .3rem; padding:0 .4rem; overflow:visible; }
+  .vinyl-click{ position:relative; width:clamp(92px,27cqw,132px); aspect-ratio:1; flex:none; z-index:2; }
   .vinyl-click img{ width:100%; height:100%; border-radius:50%; filter:drop-shadow(0 4px 10px rgba(20,4,8,.35)); }
   .vinyl-click svg{ position:absolute; inset:-22%; width:144%; height:144%; }
   .vinyl-click text{ font-family:'Fraunces',serif; font-weight:700; font-size:9px; letter-spacing:.15em; fill:var(--accent-deep); }
-  .cake-deco{ width:clamp(64px,18cqw,84px); height:auto; }
-  .media-disco{ width:clamp(64px,18cqw,84px); height:auto; }
+  .cake-deco{ width:clamp(94px,27cqw,126px); height:auto; flex:none; z-index:3; filter:drop-shadow(0 6px 14px rgba(20,4,8,.3)); }
+  .media-disco{ width:clamp(78px,22cqw,108px); height:auto; flex:none; margin-right:-2.4rem; align-self:center; z-index:1; }
 
   .invite-datechip{
     margin-top:.7rem; font-family:'Fraunces',serif; font-weight:700; letter-spacing:.05em;
@@ -283,15 +283,11 @@
   .bulb:nth-child(odd){ margin-top:10px; }
 
   .spot-card{ position:relative; padding:clamp(2rem,8cqw,2.6rem) clamp(1.2rem,6cqw,1.8rem); text-align:center; overflow:visible;}
-  .photo-stack{ position:relative; width:min(56vw,210px); aspect-ratio:4/5; margin:0 auto 1.6rem; }
-  .party-photo{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-    border:6px solid var(--cream); box-shadow:var(--shadow); border-radius:4px;
+  .birthday-photo{ width:min(52vw,200px); aspect-ratio:4/5; margin:0 auto 1.6rem; }
+  .birthday-photo img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    border:8px solid var(--cream); box-shadow:var(--shadow); border-radius:4px;
   }
-  .party-photo-1{ z-index:2; transform:rotate(-4deg); }
-  .party-photo-2{ z-index:1; width:88%; height:88%; inset:auto; top:8%; left:16%; transform:rotate(7deg); }
-  .sash-sticker{ position:absolute; z-index:3; width:78%; top:36%; left:-14%; transform:rotate(-20deg); mix-blend-mode:multiply; }
-  .spot-script{ font-family:'Beau Rivage',cursive; font-size:clamp(1.8rem,8cqw,2.4rem); color:var(--accent-deep); }
   .spot-num{ font-family:'Fraunces',serif; font-weight:700; font-size:clamp(4rem,20cqw,6.5rem); color:var(--accent-deep); line-height:.85; margin:.1em 0;}
   .spot-title{ font-size:clamp(1.5rem,6cqw,2rem); font-weight:600; }
 
@@ -362,9 +358,11 @@
     <img class="sticker" style="top:-4px; right:-20px; width:92px;" src="assets/disco-ball.png" alt="" aria-hidden="true">
     <svg class="sticker" style="top:2%; left:38%; width:24px;" viewBox="0 0 24 24" fill="var(--gold)" aria-hidden="true"><path d="M12 0l2.6 8.1H23l-6.9 5 2.7 8-6.8-5-6.8 5 2.7-8L1 8.1h8.4z"/></svg>
     <svg class="sticker" style="top:22%; left:6%; width:16px;" viewBox="0 0 24 24" fill="var(--gold)" opacity=".8" aria-hidden="true"><path d="M12 0l2.6 8.1H23l-6.9 5 2.7 8-6.8-5-6.8 5 2.7-8L1 8.1h8.4z"/></svg>
+    <svg class="sticker" style="bottom:6%; left:4%; width:20px;" viewBox="0 0 24 24" fill="var(--gold)" opacity=".85" aria-hidden="true"><path d="M12 0l2.6 8.1H23l-6.9 5 2.7 8-6.8-5-6.8 5 2.7-8L1 8.1h8.4z"/></svg>
+    <svg class="sticker" style="bottom:14%; right:5%; width:15px;" viewBox="0 0 24 24" fill="var(--gold)" opacity=".8" aria-hidden="true"><path d="M12 0l2.6 8.1H23l-6.9 5 2.7 8-6.8-5-6.8 5 2.7-8L1 8.1h8.4z"/></svg>
 
     <p class="invite-eyebrow">You are invited to</p>
-    <p class="name">Lina</p>
+    <p class="name">Poly&rsquo;s</p>
     <h1 class="party">18th Birthday Party!</h1>
 
     <div class="flourish">
@@ -395,7 +393,6 @@
     <p class="invite-tagline">Let&rsquo;s celebrate, make memories, and have a day to remember!</p>
 
     <img class="sticker" style="bottom:-6px; left:-14px; width:56px;" src="assets/lips.png" alt="" aria-hidden="true">
-    <img class="sticker" style="bottom:-10px; right:-10px; width:96px; mix-blend-mode:multiply;" src="assets/lace.png" alt="" aria-hidden="true">
 
     <div class="scrolldown">⌄</div>
   </section>
@@ -404,7 +401,7 @@
   <section id="location" class="on-burgundy">
     <p class="eyebrow">Где это будет</p>
     <h2 class="section-title">Уютный коттедж</h2>
-    <p class="section-lede">Целый дом в нашем распоряжении — с бассейном и сауной.</p>
+    <p class="section-lede">С бассейном и сауной</p>
 
     <svg class="cottage" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <polygon points="20,80 110,20 200,80" fill="var(--gold)"/>
@@ -428,8 +425,8 @@
     <div class="rules">
       <p class="eyebrow">House rules</p>
       <ul>
-        <li>🍾 Не напиваться в хлам, пожалуйста</li>
-        <li>💛 Прийти в хорошем настроении и кайфовать</li>
+        <li>🍾 Не напиваться в хлам</li>
+        <li>💛 Прийти в хорошем настроении и хорошо отдохнуть</li>
       </ul>
     </div>
   </section>
@@ -449,10 +446,10 @@
       <div class="progcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h12l-2 6a4 4 0 01-8 0L6 3z"/><path d="M12 13v7M8 20h8"/></svg><span>Алко</span></div>
       <div class="progcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12.5h3M9.5 11v3"/><circle cx="16" cy="11.5" r="1"/><circle cx="18" cy="13.5" r="1"/></svg><span>Приставка</span></div>
       <div class="progcard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0M12 17v4M9 21h6"/></svg><span>Караоке</span></div>
-      <div class="progcard wide">✨ и другое — узнаете уже на месте</div>
+      <div class="progcard wide">и другое — узнаете уже на месте ✨</div>
     </div>
 
-    <div class="banner">Берите купальники!!! 🩱</div>
+    <div class="banner">Берите купальники!!!</div>
   </section>
 
   <!-- ============ BIRTHDAY SPOTLIGHT ============ -->
@@ -466,16 +463,10 @@
         <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
         <div class="center"></div>
       </div>
-      <img class="sticker spin-slow" style="top:2%; right:6%; width:58px;" src="assets/vinyl-red.jpg" alt="" aria-hidden="true">
-
-      <div class="photo-stack">
-        <img class="party-photo party-photo-2" src="assets/party-photo-3.jpg" alt="">
-        <img class="party-photo party-photo-1" src="assets/party-photo-1.jpg" alt="Лина на прошлом дне рождения">
-        <img class="sash-sticker" src="assets/sash-trim.jpg" alt="" aria-hidden="true">
-        <img class="sticker" style="bottom:-12px; left:-16px; width:60px;" src="assets/cake-trim.jpg" alt="" aria-hidden="true">
+      <div class="birthday-photo">
+        <img src="assets/party-photo-1.jpg" alt="Лина на прошлом дне рождения">
       </div>
 
-      <p class="spot-script">Flowers &amp; party</p>
       <div class="spot-num">18</div>
       <h2 class="spot-title">It&rsquo;s my birthday!</h2>
     </div>
