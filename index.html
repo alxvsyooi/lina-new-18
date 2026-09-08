@@ -180,6 +180,11 @@
     backface-visibility:hidden; border-radius:6px;
   }
   .envelope.is-open .env-flap{ transform:rotateX(178deg); opacity:0; }
+  .env-flap::after{
+    content:""; position:absolute; left:50%; top:78%; width:15%; height:9%;
+    transform:translate(-50%,-50%); background:var(--ink-mid);
+    filter:blur(9px); opacity:.85; pointer-events:none;
+  }
 
   .env-hint{ font-size:.78rem; color:currentColor; opacity:.65; }
   .arrow{ color:var(--accent); }
@@ -289,7 +294,7 @@
     width:100%; height:100%; object-fit:cover; object-position:50% 22%; display:block;
     border:12px solid var(--cream); box-shadow:var(--shadow); border-radius:4px;
   }
-  .bday-ribbon{
+  .birthday-photo .bday-ribbon{
     position:absolute; z-index:3; left:50%; bottom:-15%; width:104%; max-width:300px;
     transform:translateX(-50%) rotate(-6deg); pointer-events:none;
     filter:drop-shadow(0 8px 14px rgba(20,4,8,.35));
@@ -371,7 +376,7 @@
     <svg class="sticker" style="bottom:14%; right:5%; width:15px;" viewBox="0 0 24 24" fill="var(--gold)" opacity=".8" aria-hidden="true"><path d="M12 0l2.6 8.1H23l-6.9 5 2.7 8-6.8-5-6.8 5 2.7-8L1 8.1h8.4z"/></svg>
 
     <p class="invite-eyebrow">You are invited to</p>
-    <p class="name">Poly&rsquo;s</p>
+    <p class="name">Poly</p>
     <h1 class="party">18th Birthday Party!</h1>
 
     <div class="flourish">
@@ -405,6 +410,25 @@
     <img class="sticker" style="bottom:-6px; left:-14px; width:56px;" src="assets/lips.png" alt="" aria-hidden="true">
 
     <div class="scrolldown">⌄</div>
+  </section>
+
+  <!-- ============ BIRTHDAY SPOTLIGHT ============ -->
+  <section class="on-burgundy spotlight" id="birthday">
+    <div class="garland" aria-hidden="true">
+      <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+      <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+    </div>
+    <div class="panel spot-card">
+      <img class="sticker bday-disco" src="assets/disco-ball.png" alt="" aria-hidden="true">
+      <img class="sticker bday-bow" src="assets/bow.png" alt="" aria-hidden="true">
+      <div class="birthday-photo">
+        <img src="assets/birthday-photo.jpg" alt="Лина в детстве на дне рождения">
+        <img class="bday-ribbon" src="assets/sash-ribbon.png" alt="" aria-hidden="true">
+      </div>
+
+      <div class="spot-num">18</div>
+      <h2 class="spot-title">It&rsquo;s my birthday!</h2>
+    </div>
   </section>
 
   <!-- ============ LOCATION ============ -->
@@ -453,25 +477,6 @@
     </div>
 
     <div class="banner">Берите купальники!!!</div>
-  </section>
-
-  <!-- ============ BIRTHDAY SPOTLIGHT ============ -->
-  <section class="on-burgundy spotlight" id="birthday">
-    <div class="garland" aria-hidden="true">
-      <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
-      <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
-    </div>
-    <div class="panel spot-card">
-      <img class="sticker bday-disco" src="assets/disco-ball.png" alt="" aria-hidden="true">
-      <img class="sticker bday-bow" src="assets/bow.png" alt="" aria-hidden="true">
-      <div class="birthday-photo">
-        <img src="assets/birthday-photo.jpg" alt="Лина в детстве на дне рождения">
-        <img class="bday-ribbon" src="assets/sash-ribbon.png" alt="" aria-hidden="true">
-      </div>
-
-      <div class="spot-num">18</div>
-      <h2 class="spot-title">It&rsquo;s my birthday!</h2>
-    </div>
   </section>
 
   <!-- ============ WISHLIST ============ -->
