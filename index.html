@@ -135,8 +135,8 @@
     color:var(--accent-deep); margin:0; text-align:center; position:relative; z-index:1;
   }
 
-  .click-cta{ display:flex; flex-direction:column; align-items:center; gap:.2rem; margin-top:1.4rem; position:relative; z-index:1; }
-  .click-cta .cta-arrow{ position:absolute; right:clamp(-2.6rem,-7cqw,-1.2rem); top:clamp(-3.6rem,-10cqw,-1.6rem); }
+  .click-cta{ display:flex; flex-direction:column; align-items:center; gap:.2rem; margin-top:1.9rem; position:relative; z-index:1; }
+  .click-cta .cta-arrow{ position:absolute; right:clamp(-2.8rem,-7.5cqw,-1.3rem); top:clamp(-3.2rem,-8.5cqw,-1.3rem); }
   .click-cta .cta-text{ position:relative; display:inline-block; }
   .click-cta span{
     font-family:'Fraunces',serif; font-weight:300; letter-spacing:.06em;
@@ -207,7 +207,7 @@
   }
 
   .invite-media{ position:relative; display:flex; align-items:center; justify-content:center; gap:clamp(1.3rem,6cqw,2rem); margin:.9rem 0 .3rem; padding:0 .4rem; overflow:visible; }
-  .vinyl-click{ position:relative; width:clamp(92px,27cqw,132px); aspect-ratio:1; flex:none; z-index:2; }
+  .vinyl-click{ position:relative; display:block; width:clamp(92px,27cqw,132px); aspect-ratio:1; flex:none; z-index:2; text-decoration:none; cursor:pointer; }
   .vinyl-click img{ width:100%; height:100%; border-radius:50%; filter:drop-shadow(0 4px 10px rgba(20,4,8,.35)); }
   .vinyl-click svg{ position:absolute; inset:-22%; width:144%; height:144%; }
   .vinyl-click text{ font-family:'Fraunces',serif; font-weight:700; font-size:9px; letter-spacing:.15em; fill:var(--accent-deep); }
@@ -378,13 +378,13 @@
     </div>
 
     <div class="invite-media">
-      <div class="vinyl-click spin-slow">
+      <a class="vinyl-click spin-slow" id="vinyl-link" href="https://music.yandex.ru/" target="_blank" rel="noopener" aria-label="Открыть песню">
         <img src="assets/vinyl-red.png" alt="">
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <defs><path id="vinylCircle" d="M50,6 a44,44 0 1,1 -0.1,0"/></defs>
           <text><textPath href="#vinylCircle" startOffset="0%">CLICK TO PLAY · CLICK TO PLAY ·</textPath></text>
         </svg>
-      </div>
+      </a>
       <img class="cake-deco" src="assets/cake-trim.png" alt="">
       <img class="media-disco" src="assets/disco-ball.png" alt="">
     </div>
