@@ -378,13 +378,14 @@
     </div>
 
     <div class="invite-media">
-      <a class="vinyl-click spin-slow" id="vinyl-link" href="https://music.yandex.ru/" target="_blank" rel="noopener" aria-label="Открыть песню">
+      <div class="vinyl-click" id="vinyl-btn" role="button" tabindex="0" aria-label="Включить песню">
         <img src="assets/vinyl-red.png" alt="">
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <defs><path id="vinylCircle" d="M50,6 a44,44 0 1,1 -0.1,0"/></defs>
-          <text><textPath href="#vinylCircle" startOffset="0%">CLICK TO PLAY · CLICK TO PLAY ·</textPath></text>
+          <text><textPath id="vinylCircleText" href="#vinylCircle" startOffset="0%">CLICK TO PLAY · CLICK TO PLAY ·</textPath></text>
         </svg>
-      </a>
+      </div>
+      <audio id="bg-song" src="assets/song.mp3" preload="none" loop></audio>
       <img class="cake-deco" src="assets/cake-trim.png" alt="">
       <img class="media-disco" src="assets/disco-ball.png" alt="">
     </div>
@@ -524,6 +525,32 @@
   envelope.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnvelope(); }
   });
+
+  const vinylBtn = document.getElementById('vinyl-btn');
+  const bgSong = document.getElementById('bg-song');
+  const vinylCircleText = document.getElementById('vinylCircleText');
+  function toggleSong(){
+    if (!bgSong) return;
+    if (bgSong.paused) {
+      bgSong.play().catch(() => {});
+    } else {
+      bgSong.pause();
+    }
+  }
+  if (vinylBtn && bgSong) {
+    vinylBtn.addEventListener('click', toggleSong);
+    vinylBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleSong(); }
+    });
+    bgSong.addEventListener('play', () => {
+      vinylBtn.classList.add('spin-slow');
+      if (vinylCircleText) vinylCircleText.textContent = 'NOW PLAYING · NOW PLAYING ·';
+    });
+    bgSong.addEventListener('pause', () => {
+      vinylBtn.classList.remove('spin-slow');
+      if (vinylCircleText) vinylCircleText.textContent = 'CLICK TO PLAY · CLICK TO PLAY ·';
+    });
+  }
 
   const revealItems = document.querySelectorAll('#reveal-content > *');
   if ('IntersectionObserver' in window) {
